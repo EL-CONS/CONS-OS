@@ -1,0 +1,236 @@
+@font-face {
+  font-family: "Technology";
+  src: url(./fonts/Seven\ Segment.ttf) format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+    background: var(--background-color-opaque-green); 
+    color:var(--font-color-dark-green);
+    font-size: var(--font-size);
+    font-family: "Technology";
+    scrollbar-color: var(--background-color-white);
+    height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+    overscroll-behavior: none; 
+    -webkit-user-select: none;
+    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.navBar{
+
+    height: 5%;
+    width: 95%;
+    position: absolute;
+    top: 1.5vmax;
+    border-radius: 10px;
+ 
+    display: flex;
+
+
+    justify-content: space-between;
+
+    background-color: var(--font-color-dark-green);
+    margin:10px;
+    box-shadow:  2px 4px 1px rgba(0,0,0,0.2);
+    color: var(--background-color-opaque-green);
+}
+
+.start-button{
+  height: 100%;
+  width: 10vmax;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 10px;
+  box-shadow: 3px 0px 1px var(--background-color-opaque-green);
+  font-size: 50%;
+  position: relative;
+}
+
+.start-button:hover{
+  background-color: var(--background-color-opaque-green);
+  color: var(--font-color-dark-green);
+  box-shadow:2px 4px 0px var(--background-color-opaque-green);
+}
+
+
+.menu-container {
+    position: relative; 
+    display: inline-block;
+}
+
+
+#dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    padding: 0;
+    background: white;
+    border: 1px solid #ccc;
+    list-style: none; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 999;
+    color: var(--font-color-dark-green);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.menu-item {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#clock{
+  height: 100%;
+  width: 12vmax;
+  top:0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 50%;
+}
+
+
+
+.window {
+    position: absolute;
+    top: 10dvh;
+    width: 90dvw;
+    height: 80dvh;
+    background-color: var(--background-color-dark);
+    border: 3px solid var(--background-color-opaque-green);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+    z-index: 100; 
+}
+
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color-opaque-green);
+    color: var(--font-color-dark-green);
+    padding: 5px 15px;
+    font-size: 50%;
+}
+
+/* Replace #close-terminal-btn with the generic class */
+.close-btn {
+    background-color: var(--background-color-dark);
+    color: var(--background-color-white);
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    border-radius: 3px;
+}
+
+.close-btn:hover {
+    background-color: red;
+}
+
+/* Ensure content inside windows takes up remaining space and scrolls */
+.window-content {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+
+
+
+.welcome { 
+    font-family: "Technology";
+    font-size: 80;
+    line-height: 1.5;
+    
+}
+
+
+#terminal {
+  box-sizing: border-box;
+  color: var(--background-color-bright-green);
+}
+input {
+  background: transparent;
+  border:none;
+  outline: none;
+  font: inherit;
+  color:inherit;
+  width: 70%;
+  text-transform: uppercase;
+}
+
+#card-game{
+    padding: 20px;
+    min-height: 100dvh;
+    box-sizing: border-box;
+}
+
+
+
+:root {
+  --background-color-blue:#6c52ff;
+  --background-color-opaque-green: #8CA07DFF; 
+  --background-color-bright-green:#b5e61d;
+  --background-color-dark:rgb(14, 18, 10);
+  --background-color-white:#c8c4bc;
+
+  /*FONTS*/
+  --font-size: 40px;
+  --font-color-dark-ink:#2a2e3a;
+  --font-color-dark-green:#0c1402;
+  --font-color-light:#eeedf5;
+}

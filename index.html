@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>CONS-OS</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="navBar">
+        <div class="start-button" id="start-button">CONS-OS
+            <ul id="dropdown-menu" class="hidden">
+                <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
+                <!-- Add new apps here, just change the data-target -->
+                <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
+            </ul>
+        </div>
+        <div class="clock" id="clock"></div>
+    </div>
+
+    
+    <div class="window hidden" id="terminal-window">
+        <div class="window-header">
+            <span>Terminal</span>
+            <button class="close-btn">X</button>
+        </div>
+        
+        <div class="window-content" id="terminal">
+            <div class="welcome">welcome</div>
+            <div>Type "help" for available commands.</div>
+            <div>
+                <span>user@CONS-OS:~$ </span>
+                <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
