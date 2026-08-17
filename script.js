@@ -45,8 +45,6 @@ appLinks.forEach(link => {
         }
     });
 });
-
-// 2. Close Windows using DOM Traversal [Recorrido del DOM]
 const closeBtns = document.querySelectorAll('.close-btn');
 
 closeBtns.forEach(btn => {
@@ -88,7 +86,6 @@ input.addEventListener("keydown", function(event) {
         document.getElementById('terminal-window').classList.add('hidden');
     }
     else if (command === "CLEAR" || command === "RESET") {
-        // Loop continuously to remove the first child element as long as it is not the input's parent [padre]
         while (terminal.firstChild !== input.parentElement) {
             terminal.removeChild(terminal.firstChild);
         }
