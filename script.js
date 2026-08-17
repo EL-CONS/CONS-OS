@@ -70,32 +70,48 @@ input.addEventListener("keydown", function(event) {
     const line = document.createElement("div");
     line.textContent = "user@CONS-OS:~$ " + command;
     terminal.insertBefore(line, input.parentElement);
-    if (command === "HELP") {
-        print("Available commands:");
-        print("help");
-        print("about");
-        print("clear");
+    switch (command) {
+        case "HELP":
+            print("Available commands:");
+            print("help");
+            print("ls");
+            print("about");
+            print("clear");
+            print("reset");
+            print("exit");
+            break;
+            
+        case "ABOUT":
+            print("This is my website.");
+            break;
+            
+        case "EXIT":
+            while (terminal.firstChild !== input.parentElement) {
+                terminal.removeChild(terminal.firstChild);
+            }
+            document.getElementById('terminal-window').classList.add('hidden');
+            break;
+            
+        case "CLEAR":
+        case "RESET":
+            while (terminal.firstChild !== input.parentElement) {
+                terminal.removeChild(terminal.firstChild);
+            }
+            break;
+            
+        case "LS":
+            print("");
+            break;
+            
+        case "":
+            // Do nothing if the user just presses Enter [Intro] with no text
+            break;
+            
+        default:
+            print("Command not found: " + command);
+            break;
     }
-    else if (command === "ABOUT") {
-        print("This is my website.");
-    }
-    else if (command === "EXIT") {
-          while (terminal.firstChild !== input.parentElement) {
-            terminal.removeChild(terminal.firstChild);
-        }
-        document.getElementById('terminal-window').classList.add('hidden');
-    }
-    else if (command === "CLEAR" || command === "RESET") {
-        while (terminal.firstChild !== input.parentElement) {
-            terminal.removeChild(terminal.firstChild);
-        }
-    }
-    else if (command === "LS") {
-         print("");
-    }
-    else if (command !== "") {
-        print("Command not found: " + command);
-    }
+
     input.value = "";
 });
 
