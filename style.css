@@ -51,7 +51,7 @@ body {
   cursor: pointer;
   border: var(--background-color);
   border-radius: 10px;
-  border-style:groove;
+  border-style:double;
   
 }
 
