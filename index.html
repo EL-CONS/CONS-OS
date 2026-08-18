@@ -22,8 +22,8 @@
     </div>
     
 
-    
-    <div class="window hidden" id="terminal-window">
+    <div class="window-position-space">
+<div class="window hidden" id="terminal-window">
         <div class="window-header">
             <span>Terminal</span>
             <button class="close-btn">X</button>
@@ -45,17 +45,29 @@
                <button class="close-btn">X</button>
          </div>
 
-<select id="color-settings-window">
-  <option value="gray-lcd">gray-lcd</option>
-  <!-- The value here MUST match the string inside your CSS [data-theme="..."] -->
-  <option value="blue-lcd">blue-lcd</option> 
-  <option value="green-lcd">green-lcd</option> 
-</select>
+        <div id="color-settings-window" class="window-content">
+                <input type="radio" id="theme1" name="theme" autocomplete="off" value="gray-lcd" checked>
+                <input type="radio" id="theme2" name="theme" autocomplete="off" value="blue-lcd">
+                <input type="radio" id="theme3" name="theme" autocomplete="off" value="green-lcd">
+                <input type="radio" id="theme4" name="theme" autocomplete="off" value="green-navy">
+                <input type="radio" id="theme5" name="theme" autocomplete="off" value="vampire">
+            <div class="color-settings-area">
+                <label for="theme1" class="color-settings-selection-square"><p>gray lcd</p></label>
+                <label for="theme2" class="color-settings-selection-square"><p>blue lcd</p></label>
+                <label for="theme3" class="color-settings-selection-square"><p>green lcd</p></label>
+                <label for="theme4" class="color-settings-selection-square"><p>green navy</p></label>
+                <label for="theme5" class="color-settings-selection-square"><p>vampire</p></label>
+            </div>
+        </div>
+    </div>
 
-         
+    
+        
+
 
 
     </div>
+    
 
 
 
