@@ -13,11 +13,14 @@
             <ul id="dropdown-menu" class="hidden">
                 <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
                 
+                <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
+
                 <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
             </ul>
         </div>
         <div class="clock" id="clock"></div>
     </div>
+    
 
     
     <div class="window hidden" id="terminal-window">
@@ -27,7 +30,7 @@
         </div>
         
         <div class="window-content" id="terminal">
-            <div class="welcome">welcome</div>
+            
             <div>Type "help" for available commands.</div>
             <div>
                 <span>user@CONS-OS:~$ </span>
@@ -36,6 +39,30 @@
         </div>
     </div>
     
+    <div class="window hidden" id="color-settings-window">
+         <div class="window-header">
+            <span>color settings</span>
+               <button class="close-btn">X</button>
+         </div>
+
+<select id="color-settings-window">
+  <option value="gray-lcd">gray-lcd</option>
+  <!-- The value here MUST match the string inside your CSS [data-theme="..."] -->
+  <option value="blue-lcd">blue-lcd</option> 
+  <option value="green-lcd">green-lcd</option> 
+</select>
+
+         
+
+
+    </div>
+
+
+
+
+
+
+
 
     <script src="script.js"></script>
 </body>

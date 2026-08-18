@@ -10,7 +10,6 @@ function updateClock() {
     let h = date.getHours();
     let m = date.getMinutes();
     let s = date.getSeconds();
-    
     const ampm = h >= 12 ? 'PM' : 'AM';
 
     h = h % 12;
@@ -43,6 +42,14 @@ appLinks.forEach(link => {
                 document.getElementById('command').focus();
             }
         }
+
+        if (targetWindow) {
+            targetWindow.classList.remove('hidden');
+            
+            if (targetId === 'color-settings-window') {
+                document.getElementById('osColors').focus();
+            }
+        }
     });
 });
 const closeBtns = document.querySelectorAll('.close-btn');
@@ -58,9 +65,6 @@ closeBtns.forEach(btn => {
 });
 
 
-
-
-
 input.addEventListener("keydown", function(event) {
     if (event.key !== "Enter") {
         return;
@@ -72,17 +76,19 @@ input.addEventListener("keydown", function(event) {
     terminal.insertBefore(line, input.parentElement);
     switch (command) {
         case "HELP":
-            print("Available commands:");
-            print("help");
-            print("ls");
-            print("about");
-            print("clear");
-            print("reset");
-            print("exit");
+            print("--Available commands:--");
+            print("HELP");
+            print("LS");
+            print("CD");
+            print("ABOUT");
+            print("CLEAR");
+            print("RESET");
+            print("EXIT");
+            print("----------------------");
             break;
             
         case "ABOUT":
-            print("This is my website.");
+            print("WELCOME TO EL-CONS WEBSITE.");
             break;
             
         case "EXIT":
@@ -93,18 +99,54 @@ input.addEventListener("keydown", function(event) {
             break;
             
         case "CLEAR":
-        case "RESET":
+            print("");
             while (terminal.firstChild !== input.parentElement) {
                 terminal.removeChild(terminal.firstChild);
             }
             break;
+        case "RESET":
+            
+            while (terminal.firstChild !== input.parentElement) {
+                terminal.removeChild(terminal.firstChild);
+            }
+            print("Type 'help' for available commands.");
+            break;
             
         case "LS":
-            print("");
+            print("ABOUT_ME/");
+            print("GITHUB/");
+            print("ITCHIO/");
+            break;
+        case "CD ABOUT_ME":
+                print("HI, IM EL-CONS. I'M A COMPUTER SCIENCE STUDENT");
+                break;
+        case "CD GITHUB":
+                printLink("VISIt MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
+                break;
+        case "CD ITCHIO":
+                printLink("VISIT MY ITCHIO PROFILE C:", "https://el-cons.itch.io/");
+                break;
+        case "CONSFETCH":
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⠫⠂⡠⠁⠈⡄⡛⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⠁⣳⠁⡾⠠⢸⠇⠘⠛⠿⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⠂⢷⡀⣁⡠⠋⢠⣾⣡⣿⣿⣶⣦⣈⠛⢿⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⡩⢻⡀⠀⣼⣿⠿⢿⣿⣿⣿⣿⣷⣄⠙⠫⡳⢂⠙⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⡄⠙⠸⠿⠿⠎⢷⣬⠅⣹⣿⣿⡏⠄⡜⡔⢁⠕⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⢐⣒⡛⠛⠛⠛⢛⠶⣥⣘⠻⣿⡟⠀⢸⡈⠲⢋⡼⡣");
+            print("⣿⣿⣿⣿⠛⢄⣑⡙⢇⠸⣍⡇⡆⡕⢺⣽⡷⢆⡐⠙⢷⣌⠀⠇⢘⠷⣶⣋⢪⣶");
+            print("⣿⡋⡻⠻⣦⡈⡛⠾⣍⣑⠐⢡⡳⣥⡨⠼⠇⠇⠈⢰⡄⡝⢧⣶⣷⣦⣤⣤⣶⣿");
+            print("⠃⣤⡀⣦⣿⣿⣶⣶⣤⣉⢛⢓⣶⡌⠻⠰⣾⠶⠦⠛⠡⠿⢀⢴⣿⣿⣿⣿⣿⣿");
+            print("⡞⠿⣧⣊⡛⠉⢻⠿⠟⢋⣄⢾⣿⣿⣮⣳⢆⣐⣦⣎⢗⢿⣶⣿⣿⣿⣿⣿⣿⣿");
+            print("⣦⣥⣤⠉⠙⠀⠀⠁⠀⠉⠛⣿⣿⣿⣿⡟⢟⢇⣌⣹⠛⡮⢼⣉⣉⠉⢿⣿⣿⣿");
+            print("⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣿⡿⢠⣿⣿⣿⣶⣧⣊⠟⠁⣸⣿⣿⣿");
+            print("⣿⣿⣿⣿⣾⣴⣠⠀⠀⠀⠀⠀⠀⠀⠙⠿⠃⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣷⣧⡠⠀⠀⠀⠀⠀⠀⠘⠙⢿⣿⣿⠿⡿⣿⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⢀⠀⠀⠀⡀⠳⣦⣉⣄⡂⠑⢹⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣧⣆⣮⣾⣇⡼⠛⡟⢁⣵⣿⣿⣿⣿⣿⣿⣿");
             break;
             
         case "":
-            // Do nothing if the user just presses Enter [Intro] with no text
+            
             break;
             
         default:
@@ -115,12 +157,26 @@ input.addEventListener("keydown", function(event) {
     input.value = "";
 });
 
+function printLink(text,url){
+    const line =document.createElement("div");
+    const link= document.createElement("a");
+
+    link.href  =url;
+    link.textContent=text;
+    link.target="_blank";
+    link.style.color = "var(--background-color-bright-green)"; 
+    line.appendChild(link);
+
+    terminal.insertBefore(line, input.parentElement);
+}
+
 
 function print(text) {
     const line = document.createElement("div");
     line.textContent = text;
     terminal.insertBefore(line, input.parentElement);
 }
+
 const menuBtn = document.getElementById('start-button');
 const dropdownMenu = document.getElementById('dropdown-menu');
 
@@ -146,6 +202,15 @@ document.addEventListener('keydown', (event) => {
         dropdownMenu.classList.add('hidden');
     }
 });
+
+
+const menu = document.getElementById('color-settings-window');
+
+menu.addEventListener('change', (event) => {
+
+  document.documentElement.setAttribute('data-theme', event.target.value);
+});
+
 
 
 
