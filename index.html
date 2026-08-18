@@ -14,7 +14,8 @@
                 <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
                 
                 <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
-
+                
+                <li class="menu-item app-link" data-target="empty-window">empty</li>
                 <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
             </ul>
         </div>
@@ -23,45 +24,62 @@
     
 
     <div class="window-position-space">
-<div class="window hidden" id="terminal-window">
-        <div class="window-header">
-            <span>Terminal</span>
-            <button class="close-btn">X</button>
-        </div>
-        
-        <div class="window-content" id="terminal">
-            
-            <div>Type "help" for available commands.</div>
-            <div>
-                <span>user@CONS-OS:~$ </span>
-                <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
-            </div>
-        </div>
-    </div>
-    
-    <div class="window hidden" id="color-settings-window">
-         <div class="window-header">
-            <span>color settings</span>
-               <button class="close-btn">X</button>
-         </div>
 
-        <div id="color-settings-window" class="window-content">
+        <!-- COLOR SETTINGS -->
+        <div class="window hidden" id="color-settings-window">
+            <div class="window-header">
+                <span>color settings</span>
+                <button class="close-btn">X</button>
+            </div>
+
+            <div class="window-content">
                 <input type="radio" id="theme1" name="theme" autocomplete="off" value="gray-lcd" checked>
                 <input type="radio" id="theme2" name="theme" autocomplete="off" value="blue-lcd">
                 <input type="radio" id="theme3" name="theme" autocomplete="off" value="green-lcd">
                 <input type="radio" id="theme4" name="theme" autocomplete="off" value="green-navy">
                 <input type="radio" id="theme5" name="theme" autocomplete="off" value="vampire">
-            <div class="color-settings-area">
-                <label for="theme1" class="color-settings-selection-square"><p>gray lcd</p></label>
-                <label for="theme2" class="color-settings-selection-square"><p>blue lcd</p></label>
-                <label for="theme3" class="color-settings-selection-square"><p>green lcd</p></label>
-                <label for="theme4" class="color-settings-selection-square"><p>green navy</p></label>
-                <label for="theme5" class="color-settings-selection-square"><p>vampire</p></label>
+                <div class="color-settings-area">
+                    <label for="theme1" class="color-settings-selection-square"><p>gray lcd</p></label>
+                    <label for="theme2" class="color-settings-selection-square"><p>blue lcd</p></label>
+                    <label for="theme3" class="color-settings-selection-square"><p>green lcd</p></label>
+                    <label for="theme4" class="color-settings-selection-square"><p>green navy</p></label>
+                    <label for="theme5" class="color-settings-selection-square"><p>vampire</p></label>
+                </div>
             </div>
         </div>
-    </div>
+
+        <!-- CLI TERMINAL-->
+        <div class="window hidden" id="terminal-window">
+                <div class="window-header">
+                    <span>Terminal</span>
+                    <button class="close-btn">X</button>
+                </div>
+            <div class="window-content" id="terminal">
+                <div>Type "help" for available commands.</div>
+                <div>
+                    <span>user@CONS-OS:~$ </span>
+                    <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                </div>
+            </div>
+        </div>
+
+
 
     
+        <!-- CLI TERMINAL-->
+        <div class="window hidden" id="empty-window">
+                <div class="window-header">
+                    <span>Terminal</span>
+                    <button class="close-btn">X</button>
+                </div>
+            <div class="window-content" id="terminal">
+                <div>Type "help" for available commands.</div>
+                
+            </div>
+        </div>    
+
+
+
         
 
 

@@ -12,11 +12,11 @@ body {
     font-size: var(--font-size);
     font-family: "Technology";
     height: 100dvh;
+    width: 100dvw;
     margin: 0;
     overscroll-behavior: none; 
     -webkit-user-select: none;
     user-select: none;
-
     display: flex;
     
     justify-content: center;
@@ -81,6 +81,8 @@ body {
 
 .hidden {
     display: none !important;
+    height: 0px;
+    width: 0px;
 }
 
 .menu-item {
@@ -111,12 +113,23 @@ body {
 }
 
 .window-position-space{
-    width: 95%;
     height: 90%;
-    gap: 10px;
+    width: 90%;
     display: grid;
-    grid-auto-flow: column;
+    gap: 10px;
+    
     justify-items: stretch;
+    grid-auto-flow: column;
+    
+}
+
+@media (max-width:600px){
+    .window-position-space{
+        justify-items: stretch;
+        grid-auto-flow: row;
+        grid-auto-rows: 1fr;
+        justify-content: space-around;
+    }
 }
 
 
@@ -124,9 +137,12 @@ body {
     position: flex;
     top: 10dvh;
     max-height: 90%;
-    min-width: 10px;
+
+
+
     background-color: var(--display-color);
     border-radius: 11px;
+    
     display: flex;
     flex-direction: column;
     overflow:auto;
@@ -214,17 +230,18 @@ input[type="radio"] {
     background-size: cover; 
 }
 
-#color-settings{
-    box-sizing: border-box;
-    color: var(--background-color);
-    font-size: 20px;
+#color-settings-window{
+    /* height: fit-content;*/
 }
 
 .color-settings-area{
+    box-sizing: border-box;
+    color: var(--background-color);
+    font-size: 20px;
     display: grid;
-    place-items: center;
-    height: 100%;
-    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    justify-content: space-around;
+    align-items: center;
     gap: 10px;
 }
 

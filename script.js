@@ -111,7 +111,11 @@ input.addEventListener("keydown", function(event) {
             }
             print("Type 'help' for available commands.");
             break;
-            
+        case "REBOOT":         
+        case "SHUTDOWN":
+        case "RELOAD":
+            location.reload();
+            break
         case "LS":
             print("ABOUT_ME/");
             print("GITHUB/");
