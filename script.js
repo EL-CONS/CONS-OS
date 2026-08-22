@@ -3,6 +3,7 @@ const terminal = document.getElementById("terminal");
 const date = new Date();
 let hour = date.getHours();
 let curentDate= date.getDay+ "/" + date.getMonth+ "/";
+document.getElementById('theme1').checked =true;
 
 
 function updateClock() {

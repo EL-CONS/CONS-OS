@@ -14,7 +14,7 @@
                 <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
                 
                 <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
-                
+                <li class="menu-item app-link" data-target="files-window">files</li>
                 <li class="menu-item app-link" data-target="empty-window">empty</li>
                 <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
             </ul>
@@ -55,7 +55,7 @@
                     <button class="close-btn">X</button>
                 </div>
             <div class="window-content" id="terminal">
-                <div>Type "help" for available commands.</div>
+                    <div>Type "help" for available commands.</div>
                 <div>
                     <span>user@CONS-OS:~$ </span>
                     <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
@@ -65,7 +65,31 @@
 
 
 
-    
+        <div class="window hidden" id="files-window">
+            <div class="window-header">
+               <span>files</span>
+                    <button class="close-btn">X</button>
+            </div>
+            
+           <div class="window-content">
+             <div class="files-area">
+              <button class="folder-item">
+                <span class="folder-icon"></span>
+                <span class="folder-label">About</span>
+              </button> 
+              <button class="folder-item">
+                <span class="folder-icon"></span>
+                <span class="folder-label">github</span>
+              </button>
+               <button class="folder-item">
+                <span class="folder-icon"></span>
+                <span class="folder-label">itchio</span>
+              </button>
+             </div>
+          </div>
+        </div>
+                  
+        
         <!-- CLI TERMINAL-->
         <div class="window hidden" id="empty-window">
                 <div class="window-header">
@@ -79,17 +103,7 @@
         </div>    
 
 
-
-        
-
-
-
-    </div>
-    
-
-
-
-
+</div>
 
 
 
