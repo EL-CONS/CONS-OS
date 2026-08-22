@@ -61,9 +61,13 @@ closeBtns.forEach(btn => {
         
         if (parentWindow) {
             parentWindow.classList.add('hidden');
+            
         }
     });
 });
+
+
+
 
 
 input.addEventListener("keydown", function(event) {
@@ -132,22 +136,19 @@ input.addEventListener("keydown", function(event) {
                 printLink("VISIT MY ITCHIO PROFILE C:", "https://el-cons.itch.io/");
                 break;
         case "CONSFETCH":
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⠫⠂⡠⠁⠈⡄⡛⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⠁⣳⠁⡾⠠⢸⠇⠘⠛⠿⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⠂⢷⡀⣁⡠⠋⢠⣾⣡⣿⣿⣶⣦⣈⠛⢿⣿⣿⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⡩⢻⡀⠀⣼⣿⠿⢿⣿⣿⣿⣿⣷⣄⠙⠫⡳⢂⠙⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⡄⠙⠸⠿⠿⠎⢷⣬⠅⣹⣿⣿⡏⠄⡜⡔⢁⠕⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⢐⣒⡛⠛⠛⠛⢛⠶⣥⣘⠻⣿⡟⠀⢸⡈⠲⢋⡼⡣");
-            print("⣿⣿⣿⣿⠛⢄⣑⡙⢇⠸⣍⡇⡆⡕⢺⣽⡷⢆⡐⠙⢷⣌⠀⠇⢘⠷⣶⣋⢪⣶");
-            print("⣿⡋⡻⠻⣦⡈⡛⠾⣍⣑⠐⢡⡳⣥⡨⠼⠇⠇⠈⢰⡄⡝⢧⣶⣷⣦⣤⣤⣶⣿");
-            print("⠃⣤⡀⣦⣿⣿⣶⣶⣤⣉⢛⢓⣶⡌⠻⠰⣾⠶⠦⠛⠡⠿⢀⢴⣿⣿⣿⣿⣿⣿");
-            print("⡞⠿⣧⣊⡛⠉⢻⠿⠟⢋⣄⢾⣿⣿⣮⣳⢆⣐⣦⣎⢗⢿⣶⣿⣿⣿⣿⣿⣿⣿");
-            print("⣦⣥⣤⠉⠙⠀⠀⠁⠀⠉⠛⣿⣿⣿⣿⡟⢟⢇⣌⣹⠛⡮⢼⣉⣉⠉⢿⣿⣿⣿");
-            print("⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠈⠛⢿⣿⣿⡿⢠⣿⣿⣿⣶⣧⣊⠟⠁⣸⣿⣿⣿");
-            print("⣿⣿⣿⣿⣾⣴⣠⠀⠀⠀⠀⠀⠀⠀⠙⠿⠃⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣷⣧⡠⠀⠀⠀⠀⠀⠀⠘⠙⢿⣿⣿⠿⡿⣿⣿⣿⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⢀⠀⠀⠀⡀⠳⣦⣉⣄⡂⠑⢹⣿⣿⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣧⣆⣮⣾⣇⡼⠛⡟⢁⣵⣿⣿⣿⣿⣿⣿⣿");
+            print("⣿⣿⣿⠟⠉⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⣿");
+            print("⣿⣿⠏⢀⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿");
+            print("⣿⣿⠀⢸⣿⣿⣿⣷⣤⣀⣀⣠⣴⡆⢸⣿⣿");
+            print("⣿⣿⠄⢸⠛⠛⠛⣿⣿⣩⣤⣥⣿⠁⢸⣿⣿");
+            print("⣿⣿⠐⠀⣤⠈⢉⢙⠋⣤⠀⢨⡉⠀⡆⣿⣿");
+            print("⣿⣿⣇⢀⣘⣂⠂⢠⡀⢌⠠⢘⣰⠀⣰⣿⣿");
+            print("⣿⣿⣿⡘⠻⡿⠃⠘⡋⠸⢿⣿⠟⢸⣿⣿⣿");
+            print("⣿⣿⣿⣷⣤⡀⠻⠄⠀⡴⠂⠁⣠⣿⣿⣿⣿");
+            print("⣿⣿⣿⣿⣿⣿⣶⠀⣀⣀⢠⣾⣿⣿⣿⣿⣿");
+            print("⣿⣿⡿⠿⠛⠛⠋⣼⣿⣿⡌⠛⢛⠻⢿⣿⣿");
+            print("⡿⢋⣴⣾⣿⣿⣦⣭⣭⣙⣡⣿⣿⣿⣶⣌⢻");
+            print("⢁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄");
+            print("⢸⣿⣿⡏⢹⣿⣿⣿⣿⣿⣿⣿⣿⣇⢹⣿⠇")
             break;
             
         case "":
@@ -221,3 +222,13 @@ menu.addEventListener('change', (event) => {
 
 
 
+
+const folderButtons = document.querySelectorAll(".folder-item");
+folderButtons.forEach((folder) => {
+    folder.addEventListener("click", () => {
+        const url = folder.dataset.url;
+
+        window.open(url, "_blank", "noopener,noreferrer");
+    });
+});
+3
