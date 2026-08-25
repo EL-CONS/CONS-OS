@@ -386,6 +386,13 @@ input[type="checkbox"]{
   --background-color: #a11111;
   --display-color:#431717; 
 }
+
+
+[data-theme="black-white"]{
+  --background-color:white;
+  --display-color: black;
+  
+}
   
   
 
