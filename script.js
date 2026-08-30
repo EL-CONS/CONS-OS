@@ -211,11 +211,26 @@ document.addEventListener('keydown', (event) => {
 
 
 const menu = document.getElementById('color-settings-window');
+const gameFrame = document.querySelector('#empty iframe');
 
+function applyTheme(theme){
+    document.documentElement.setAttribute('data-theme',theme);
+
+    if(gameFrame && gameFrame.contentDocument){
+        gameFrame.contentDocument.documentElement.setAttribute('data-theme',theme);
+    }
+}
 menu.addEventListener('change', (event) => {
-
-  document.documentElement.setAttribute('data-theme', event.target.value);
+    applyTheme(event.target.value);
+  /* document.documentElement.setAttribute('data-theme', event.target.value);*/
 });
+
+if(gameFrame){
+    gameFrame.addEventListener('load',() => {
+       const currentTheme = document.querySelector('input[name="theme"]:checked')?.value || 'gray-lcd';
+       applyTheme(currentTheme);
+    });
+}
 
 
 
@@ -231,4 +246,7 @@ folderButtons.forEach((folder) => {
         window.open(url, "_blank", "noopener,noreferrer");
     });
 });
-3
+
+
+
+

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>LIGTS-OUT</title>
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+body {
+    overflow: hidden; 
+    background-color: transparent; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*****************************************/
+/*-------------GRID CONTAINER------------*/
+/*****************************************/
+
+.building{
+    
+    width: min(100vw,100vh);
+    height: min(100vw,100vh);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.grid-container {
+    aspect-ratio: 1/1;
+    width: 100%;
+    display: grid;    
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 2%;
+    background-color: transparent;
+    padding: 2%;
+    
+}
+
+.selection-square {
+    aspect-ratio: 1/1;
+    height: 80%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+    background-color: var(--background-color);
+     image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  
+
+    -webkit-mask-image: var(--box-icon);
+    mask-image: var(--box-filed);
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+}
+
+@keyframes flicker {
+    0%, 100% { 
+        -webkit-mask-image: var(--box-filed); 
+        mask-image: var(--box-filed); 
+    }
+    50% {
+        -webkit-mask-image: var(--box-icon); 
+        mask-image: var(--box-icon); 
+    }
+}
+
+.selection-square.flickering {
+    animation: flicker 0.2s 5;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+#radio11:checked ~ .building label[for="radio11"],
+#radio12:checked ~ .building label[for="radio12"],  
+#radio13:checked ~ .building label[for="radio13"],
+#radio14:checked ~ .building label[for="radio14"],
+#radio15:checked ~ .building label[for="radio15"],
+#radio21:checked ~ .building label[for="radio21"],
+#radio22:checked ~ .building label[for="radio22"],
+#radio23:checked ~ .building label[for="radio23"],
+#radio24:checked ~ .building label[for="radio24"],
+#radio25:checked ~ .building label[for="radio25"],
+#radio31:checked ~ .building label[for="radio31"],
+#radio32:checked ~ .building label[for="radio32"],
+#radio33:checked ~ .building label[for="radio33"],
+#radio34:checked ~ .building label[for="radio34"],
+#radio35:checked ~ .building label[for="radio35"],
+#radio41:checked ~ .building label[for="radio41"],
+#radio42:checked ~ .building label[for="radio42"],
+#radio43:checked ~ .building label[for="radio43"],
+#radio44:checked ~ .building label[for="radio44"],
+#radio45:checked ~ .building label[for="radio45"],
+#radio51:checked ~ .building label[for="radio51"],
+#radio52:checked ~ .building label[for="radio52"],
+#radio53:checked ~ .building label[for="radio53"],
+#radio54:checked ~ .building label[for="radio54"],
+#radio55:checked ~ .building label[for="radio55"] {
+    -webkit-mask-image: var(--box-icon);
+    mask-image: var(--box-icon);
+}
+
+
+
+
+
+
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background: var(--display-color);
+}
+::-webkit-scrollbar-thumb{
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-corner{
+    background: transparent;
+}
+
+
+[data-theme="blue-lcd"] {
+  --background-color: #6c52ff;
+  --display-color: #c8c4bc;  
+}
+
+
+[data-theme="gray-lcd"] {
+  --background-color: #889c7a;
+  --display-color:#0e1605;
+}
+
+
+[data-theme="green-lcd"] {
+  --background-color: #b5e61d;
+  --display-color:#2c4410; 
+}
+ 
+[data-theme="green-navy"] {
+  --background-color: #80b13b;
+  --display-color:#33500b; 
+}
+
+ 
+[data-theme="vampire"] {
+  --background-color: #a11111;
+  --display-color:#431717; 
+}
+
+
+[data-theme="black-white"]{
+  --background-color:white;
+  --display-color: black;
+  
+}
+
+
+:root {
+
+  --box-icon:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAZ0lEQVRYR+2XMQrAMAzEmv8/OsWFM3FDRh8ZpCm0gw5tHk9l5quXsT0W+fqtg+KRzCUX6YsBbrn4vBrQnf3EZAAFKEABClCAAhSgAAUocE2BIMY4ycMkcF9H5TQTrhHF88+un92k9wVpxz4Hb/yGIQAAABBkZUJHQkI4ODU0NTQ5MERDNDg3Rv0tUSYAAAAASUVORK5CYIIA");
+  --box-filed:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAV0lEQVRYR+2XOw4AIAjF5P6H1oCB+JkFh3Zie7Wb0nZ6XG+R60gcd2zbBbJefiIqUDU+DRCgAAUoQAEKUIACFKAABSjwQwGl6ndkXzMnW8K2VwElSyJ2B69SIAf2pvdoAAAAEGRlQkc0MkIzNkM3MUUzQjI2MzYwmC/x+gAAAABJRU5ErkJgggAA")
+}
+
+
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="window" id="radio11">
+    <input type="checkbox" name="window" id="radio12">
+    <input type="checkbox" name="window" id="radio13">
+    <input type="checkbox" name="window" id="radio14">
+    <input type="checkbox" name="window" id="radio15">
+    <input type="checkbox" name="window" id="radio21">
+    <input type="checkbox" name="window" id="radio22">
+    <input type="checkbox" name="window" id="radio23">
+    <input type="checkbox" name="window" id="radio24">
+    <input type="checkbox" name="window" id="radio25">
+    <input type="checkbox" name="window" id="radio31">
+    <input type="checkbox" name="window" id="radio32">
+    <input type="checkbox" name="window" id="radio33">
+    <input type="checkbox" name="window" id="radio34">
+    <input type="checkbox" name="window" id="radio35">
+    <input type="checkbox" name="window" id="radio41">
+    <input type="checkbox" name="window" id="radio42">
+    <input type="checkbox" name="window" id="radio43">
+    <input type="checkbox" name="window" id="radio44">
+    <input type="checkbox" name="window" id="radio45">
+    <input type="checkbox" name="window" id="radio51">
+    <input type="checkbox" name="window" id="radio52">
+    <input type="checkbox" name="window" id="radio53">
+    <input type="checkbox" name="window" id="radio54">
+    <input type="checkbox" name="window" id="radio55">
+    
+    <div class="building">
+        <div class="grid-container">
+            <label for="radio11" class="selection-square"><p></p></label>
+            <label for="radio12" class="selection-square"><p></p></label>
+            <label for="radio13" class="selection-square"><p></p></label>
+            <label for="radio14" class="selection-square"><p></p></label>
+            <label for="radio15" class="selection-square"><p></p></label>
+
+            <label for="radio21" class="selection-square"><p></p></label>
+            <label for="radio22" class="selection-square"><p></p></label>
+            <label for="radio23" class="selection-square"><p></p></label>
+            <label for="radio24" class="selection-square"><p></p></label>
+            <label for="radio25" class="selection-square"><p></p></label>
+
+            <label for="radio31" class="selection-square"><p></p></label>
+            <label for="radio32" class="selection-square"><p></p></label>
+            <label for="radio33" class="selection-square"><p></p></label>
+            <label for="radio34" class="selection-square"><p></p></label>
+            <label for="radio35" class="selection-square"><p></p></label>
+
+            <label for="radio41" class="selection-square"><p></p></label>
+            <label for="radio42" class="selection-square"><p></p></label>
+            <label for="radio43" class="selection-square"><p></p></label>
+            <label for="radio44" class="selection-square"><p></p></label>
+            <label for="radio45" class="selection-square"><p></p></label>
+
+            <label for="radio51" class="selection-square"><p></p></label>
+            <label for="radio52" class="selection-square"><p></p></label>
+            <label for="radio53" class="selection-square"><p></p></label>
+            <label for="radio54" class="selection-square"><p></p></label>
+            <label for="radio55" class="selection-square"><p></p></label>
+        </div>
+    </div>
+    
+<script>
+const allWindows = document.querySelectorAll('input[type="checkbox"]');
+let isRandomizing = false;
+
+function evaluateBoard() {
+    let allLightsOff = true;
+
+    allWindows.forEach(windowInput => {
+        if (!windowInput.checked) {
+            allLightsOff = false;
+        }
+    });
+
+    if (allLightsOff) {
+        const allLabels = document.querySelectorAll('.selection-square');
+        
+        allLabels.forEach(label => {
+            label.classList.add('flickering');
+        });
+
+        setTimeout(() => {
+            allLabels.forEach(label => {
+                label.classList.remove('flickering');
+            });
+            randomizeBoard();
+        }, 1000);
+    }
+}
+
+function toggleNeighbors(row, col) {
+    const neighbors = [
+        { r: row - 1, c: col }, 
+        { r: row + 1, c: col }, 
+        { r: row, c: col - 1 }, 
+        { r: row, c: col + 1 }  
+    ];
+
+    neighbors.forEach(neighbor => {
+        if (neighbor.r >= 1 && neighbor.r <= 5 && neighbor.c >= 1 && neighbor.c <= 5) {
+            const neighborCheckbox = document.getElementById(`radio${neighbor.r}${neighbor.c}`);
+            if (neighborCheckbox) {
+                neighborCheckbox.checked = !neighborCheckbox.checked;
+            }
+        }
+    });
+}
+
+allWindows.forEach(windowInput => {
+    windowInput.addEventListener('change', (event) => {
+        const id = event.target.id;
+        const row = parseInt(id.charAt(5));
+        const col = parseInt(id.charAt(6));
+
+        toggleNeighbors(row, col);
+
+        if (!isRandomizing) {
+            evaluateBoard();
+        }
+    });
+});
+
+function randomizeBoard() {
+    isRandomizing = true;
+    
+    allWindows.forEach(windowInput => {
+        windowInput.checked = false;
+    });
+
+    allWindows.forEach(windowInput => {
+        if (Math.random() > 0.5) {
+            windowInput.checked = !windowInput.checked; 
+            
+            const id = windowInput.id;
+            const row = parseInt(id.charAt(5));
+            const col = parseInt(id.charAt(6));
+            
+            toggleNeighbors(row, col); 
+        }
+    });
+
+    isRandomizing = false;
+}
+
+randomizeBoard();
+</script>
+</body>
+</html>

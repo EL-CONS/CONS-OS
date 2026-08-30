@@ -15,7 +15,7 @@
                 
                 <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
                 <li class="menu-item app-link" data-target="files-window">files</li>
-                <li class="menu-item app-link" data-target="empty-window">empty</li>
+                <li class="menu-item app-link" data-target="empty-window">lights-out</li>
                 <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
             </ul>
         </div>
@@ -41,14 +41,6 @@
             </div>
         </div>
 
-
-
-
-
-
-
-
-
         <div class="window hidden" id="files-window">
             <div class="window-header">
                <span>files</span>
@@ -58,10 +50,12 @@
            <div class="window-content">
              <div class="files-area">
                 
+                <!--
               <button class="folder-item" type="button">
                 <span class="folder-icon"></span>
                 <span class="folder-label">About_me</span>
               </button> 
+            -->
 
               <button class="folder-item" type="button" data-url="https://github.com/EL-CONS">
                 <span class="folder-icon"></span>
@@ -113,20 +107,16 @@
         <!-- CLI empty-->
         <div class="window hidden" id="empty-window">
                 <div class="window-header">
-                    <span>Terminal</span>
+                    <span>Lights-Out</span>
                     <button class="close-btn">X</button>
                 </div>
-            <div class="window-content" id="empty">
-                <!-- <div>Type "help" for available commands.</div> -->
-                
+            <div class="window-content" id="empty" style="padding: 0; margin: 0;overflow: hidden; display: flex; flex-direction: column;height: 100%">
+                <iframe src="./lights_out.html" style="border: none;width: 100%;height: 100%;display: block;"></iframe>
             </div>
         </div>    
 
 
 </div>
-
-
-
 
     <script src="script.js?v=<?= time() ?>"></script>
     
