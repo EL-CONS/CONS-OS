@@ -29,39 +29,195 @@ setInterval(updateClock, 1000);
 
 
 
+const taskbarAppsContainer = document.getElementById('taskbar-apps');
+let activeWindowId = null;
+
+const APP_SHORT_NAMES = {
+    'terminal-window': 'TERM.',
+    'color-settings-window': 'COLOR.S.',
+    'files-window': 'FILES',
+    'empty-window': 'LIGHTS',
+    'notes-window': 'NOTES'
+};
+
+function getAppShortName(id, fullTitle) {
+    if (APP_SHORT_NAMES[id]) {
+        return APP_SHORT_NAMES[id];
+    }
+    const clean = fullTitle.trim().toUpperCase();
+    if (clean.length <= 6) {
+        return clean;
+    }
+    return clean.substring(0, 5) + '.';
+}
+
+
+if (taskbarAppsContainer) {
+    
+    taskbarAppsContainer.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault();
+            taskbarAppsContainer.scrollLeft += e.deltaY;
+        }
+    }, { passive: false });
+
+    
+    let isMouseDown = false;
+    let startPageX = 0;
+    let scrollStart = 0;
+    let hasMoved = false;
+
+    taskbarAppsContainer.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return; 
+        isMouseDown = true;
+        hasMoved = false;
+        startPageX = e.pageX;
+        scrollStart = taskbarAppsContainer.scrollLeft;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isMouseDown) return;
+        const diff = e.pageX - startPageX;
+        if (Math.abs(diff) > 4) {
+            hasMoved = true;
+            taskbarAppsContainer.classList.add('is-dragging');
+        }
+        taskbarAppsContainer.scrollLeft = scrollStart - diff;
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isMouseDown) {
+            isMouseDown = false;
+            taskbarAppsContainer.classList.remove('is-dragging');
+    
+            setTimeout(() => {
+                hasMoved = false;
+            }, 50);
+        }
+    });
+
+    
+    taskbarAppsContainer.addEventListener('click', (e) => {
+        if (hasMoved) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    }, true);
+}
+
+function updateTaskbar() {
+    if (!taskbarAppsContainer) return;
+    taskbarAppsContainer.innerHTML = '';
+
+    const openWindows = document.querySelectorAll('.window:not(.hidden)');
+
+    openWindows.forEach(win => {
+        const id = win.id;
+        const titleSpan = win.querySelector('.window-header span');
+        const title = titleSpan ? titleSpan.textContent.trim() : id;
+        const shortTitle = getAppShortName(id, title);
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'taskbar-app-btn' + (id === activeWindowId ? ' active' : '');
+        btn.textContent = shortTitle;
+        btn.title = title; 
+        btn.dataset.target = id;
+
+        if (id === activeWindowId) {
+            setTimeout(() => {
+                btn.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+            }, 10);
+        }
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (activeWindowId === id) {
+                
+                win.classList.add('hidden');
+                win.classList.remove('active-window');
+                activeWindowId = null;
+                const remaining = document.querySelectorAll('.window:not(.hidden)');
+                if (remaining.length > 0) {
+                    setActiveWindow(remaining[remaining.length - 1].id);
+                } else {
+                    updateTaskbar();
+                }
+            } else {
+                setActiveWindow(id);
+            }
+        });
+
+        taskbarAppsContainer.appendChild(btn);
+    });
+}
+
+function setActiveWindow(targetId) {
+    const allWindows = document.querySelectorAll('.window');
+    allWindows.forEach(win => {
+        if (win.id === targetId) {
+            win.classList.remove('hidden');
+            win.classList.add('active-window');
+            win.style.zIndex = '20';
+        } else if (!win.classList.contains('hidden')) {
+            win.classList.remove('active-window');
+            win.style.zIndex = '10';
+        }
+    });
+
+    activeWindowId = targetId;
+
+    if (targetId === 'terminal-window') {
+        const cmdInput = document.getElementById('command');
+        if (cmdInput) cmdInput.focus();
+    } else if (targetId === 'color-settings-window') {
+        const colorInput = document.getElementById('osColors');
+        if (colorInput) colorInput.focus();
+    }
+
+    updateTaskbar();
+}
+
+function closeWindow(win) {
+    if (!win) return;
+    win.classList.add('hidden');
+    win.classList.remove('active-window');
+    
+    if (activeWindowId === win.id) {
+        activeWindowId = null;
+        const remaining = document.querySelectorAll('.window:not(.hidden)');
+        if (remaining.length > 0) {
+            setActiveWindow(remaining[remaining.length - 1].id);
+            return;
+        }
+    }
+    updateTaskbar();
+}
+
 const appLinks = document.querySelectorAll('.app-link');
 
 appLinks.forEach(link => {
     link.addEventListener('click', () => {
         const targetId = link.getAttribute('data-target');
-        const targetWindow = document.getElementById(targetId);
-        
-        if (targetWindow) {
-            targetWindow.classList.remove('hidden');
-            
-            if (targetId === 'terminal-window') {
-                document.getElementById('command').focus();
-            }
-        }
-
-        if (targetWindow) {
-            targetWindow.classList.remove('hidden');
-            
-            if (targetId === 'color-settings-window') {
-                document.getElementById('osColors').focus();
-            }
+        if (targetId) {
+            setActiveWindow(targetId);
         }
     });
 });
+
 const closeBtns = document.querySelectorAll('.close-btn');
 
 closeBtns.forEach(btn => {
     btn.addEventListener('click', (event) => {
         const parentWindow = event.target.closest('.window');
-        
-        if (parentWindow) {
-            parentWindow.classList.add('hidden');
-            
+        closeWindow(parentWindow);
+    });
+});
+
+document.querySelectorAll('.window').forEach(win => {
+    win.addEventListener('mousedown', () => {
+        if (activeWindowId !== win.id) {
+            setActiveWindow(win.id);
         }
     });
 });
@@ -100,7 +256,7 @@ input.addEventListener("keydown", function(event) {
             while (terminal.firstChild !== input.parentElement) {
                 terminal.removeChild(terminal.firstChild);
             }
-            document.getElementById('terminal-window').classList.add('hidden');
+            closeWindow(document.getElementById('terminal-window'));
             break;
             
         case "CLEAR":
@@ -149,6 +305,11 @@ input.addEventListener("keydown", function(event) {
             print("⡿⢋⣴⣾⣿⣿⣦⣭⣭⣙⣡⣿⣿⣿⣶⣌⢻");
             print("⢁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄");
             print("⢸⣿⣿⡏⢹⣿⣿⣿⣿⣿⣿⣿⣿⣇⢹⣿⠇")
+            break;
+            
+        case "LOREM":
+        case "LOREM IPSUM":
+            print("DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT.");
             break;
             
         case "":
@@ -222,7 +383,6 @@ function applyTheme(theme){
 }
 menu.addEventListener('change', (event) => {
     applyTheme(event.target.value);
-  /* document.documentElement.setAttribute('data-theme', event.target.value);*/
 });
 
 if(gameFrame){
@@ -235,9 +395,6 @@ if(gameFrame){
 
 
 
-
-
-
 const folderButtons = document.querySelectorAll(".folder-item");
 folderButtons.forEach((folder) => {
     folder.addEventListener("click", () => {
@@ -246,6 +403,61 @@ folderButtons.forEach((folder) => {
         window.open(url, "_blank", "noopener,noreferrer");
     });
 });
+
+const digitalKeyboard = document.querySelector('.keyboard');
+const LOREM_TEXT = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT. DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR. EXCEPTEUR SINT OCCAECAT CUPIDATAT NON PROIDENT, SUNT IN CULPA QUI OFFICIA DESERUNT MOLLIT ANIM ID EST LABORUM. ";
+let loremIndex = 0;
+
+function typeDigitalKeyboardChar() {
+    const terminalWindow = document.getElementById('terminal-window');
+    if (terminalWindow) {
+        if (terminalWindow.classList.contains('hidden') || activeWindowId !== 'terminal-window') {
+            setActiveWindow('terminal-window');
+        }
+    }
+
+    if (input) {
+        const char = LOREM_TEXT[loremIndex % LOREM_TEXT.length];
+        loremIndex++;
+        input.value += char;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+
+        if (terminal) {
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    }
+}
+
+if (digitalKeyboard) {
+    let keyRepeatTimeout = null;
+    let keyRepeatInterval = null;
+
+    const stopRepeat = () => {
+        if (keyRepeatTimeout) {
+            clearTimeout(keyRepeatTimeout);
+            keyRepeatTimeout = null;
+        }
+        if (keyRepeatInterval) {
+            clearInterval(keyRepeatInterval);
+            keyRepeatInterval = null;
+        }
+    };
+
+    digitalKeyboard.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        typeDigitalKeyboardChar();
+
+        stopRepeat();
+        keyRepeatTimeout = setTimeout(() => {
+            keyRepeatInterval = setInterval(() => {
+                typeDigitalKeyboardChar();
+            }, 60);
+        }, 350);
+    });
+
+    window.addEventListener('pointerup', stopRepeat);
+    window.addEventListener('pointercancel', stopRepeat);
+}
 
 
 

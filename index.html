@@ -6,119 +6,122 @@
     <title>CONS-OS</title>
     <link rel="stylesheet" href="./style.css?v=<?= time() ?>">
 </head>
-<div class="cons"></div>
 <body>
-    <div class="navBar">
-        <div class="start-button" id="start-button">CONS-OS
-            <ul id="dropdown-menu" class="hidden">
-                <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
-                
-                <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
-                <li class="menu-item app-link" data-target="files-window">files</li>
-                <li class="menu-item app-link" data-target="empty-window">lights-out</li>
-                <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
-            </ul>
+    
+    <div class="monitor">
+        <div class="monitor-screen-content-area">
+        <div class="cons"></div>
+        <div class="navBar">
+            <div class="start-button" id="start-button">CONS-OS
+                <ul id="dropdown-menu" class="hidden">
+                    <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
+                    <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
+                    <li class="menu-item app-link" data-target="files-window">files</li>
+                    <li class="menu-item app-link" data-target="empty-window">lights-out</li>
+                    <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
+                </ul>
+            </div>
+            <div class="taskbar-apps" id="taskbar-apps"></div>
+            <div class="clock" id="clock"></div>
         </div>
-        <div class="clock" id="clock"></div>
-    </div>
     
 
-    <div class="window-position-space">
+        <div class="window-position-space">
 
        
-        <!-- CLI TERMINAL-->
-        <div class="window hidden" id="terminal-window">
+            <!-- CLI TERMINAL-->
+            <div class="window hidden" id="terminal-window">
                 <div class="window-header">
                     <span>Terminal</span>
                     <button class="close-btn">X</button>
                 </div>
-            <div class="window-content" id="terminal">
+                <div class="window-content" id="terminal">
                     <div>Type "help" for available commands.</div>
-                <div>
-                    <span>user@CONS-OS:~$ </span>
-                    <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    <div>
+                        <span>user@CONS-OS:~$ </span>
+                        <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="window hidden" id="files-window">
-            <div class="window-header">
-               <span>files</span>
-                    <button class="close-btn">X</button>
-            </div>
-            
-           <div class="window-content">
-             <div class="files-area">
-                
-                <!--
-              <button class="folder-item" type="button">
-                <span class="folder-icon"></span>
-                <span class="folder-label">About_me</span>
-              </button> 
-            -->
-
-              <button class="folder-item" type="button" data-url="https://github.com/EL-CONS">
-                <span class="folder-icon"></span>
-                <span class="folder-label">github</span>
-              </button>
-
-               <button class="folder-item" type="button" data-url="https://el-cons.itch.io/">
-                <span class="folder-icon"></span>
-                <span class="folder-label">itchio</span>
-              </button>
-
-             </div>
-          </div>
-        </div>
-                  
-
-
-
-         <!-- COLOR SETTINGS -->
-        <div class="window hidden" id="color-settings-window">
-            <div class="window-header">
-                <span>color settings</span>
-                <button class="close-btn">X</button>
-            </div>
-
-            <div class="window-content">
-                <input type="radio" id="theme1" name="theme" autocomplete="off" value="gray-lcd" checked>
-                <input type="radio" id="theme2" name="theme" autocomplete="off" value="blue-lcd">
-                <input type="radio" id="theme3" name="theme" autocomplete="off" value="green-lcd">
-                <input type="radio" id="theme4" name="theme" autocomplete="off" value="green-navy">
-                <input type="radio" id="theme5" name="theme" autocomplete="off" value="vampire">
-                <input type="radio" id="theme6" name="theme" autocomplete="off" value="black-white">
-                <div class="color-settings-area">
-                    
-                    <label for="theme1" class="color-settings-selection-square"><p>gray lcd</p></label>
-                    <label for="theme2" class="color-settings-selection-square"><p>blue lcd</p></label>
-                    <label for="theme3" class="color-settings-selection-square"><p>green lcd</p></label>
-                    <label for="theme4" class="color-settings-selection-square"><p>green navy</p></label>
-                    <label for="theme5" class="color-settings-selection-square"><p>vampire</p></label>
-                    <label for="theme6" class="color-settings-selection-square"><p>black-white</p></label>
-                    
-                </div>
-            </div>
-        </div>
-
-
-
-        
-        <!-- CLI empty-->
-        <div class="window hidden" id="empty-window">
+            <div class="window hidden" id="files-window">
                 <div class="window-header">
-                    <span>Lights-Out</span>
+                    <span>files</span>
                     <button class="close-btn">X</button>
                 </div>
-            <div class="window-content" id="empty" style="padding: 0; margin: 0;overflow: hidden; display: flex; flex-direction: column;height: 100%">
-                <iframe src="./lights_out.html" style="border: none;width: 100%;height: 100%;display: block;"></iframe>
+
+               <div class="window-content">
+                <div class="files-area">
+
+                    <!--
+                <button class="folder-item" type="button">
+                    <span class="folder-icon"></span>
+                    <span class="folder-label">About_me</span>
+                </button> 
+                -->
+
+                <button class="folder-item" type="button" data-url="https://github.com/EL-CONS">
+                    <span class="folder-icon"></span>
+                    <span class="folder-label">github</span>
+                  </button>
+
+                <button class="folder-item" type="button" data-url="https://el-cons.itch.io/">
+                    <span class="folder-icon"></span>
+                    <span class="folder-label">itchio</span>
+                </button>
+              
+                </div>
             </div>
-        </div>    
+            </div>
 
 
-</div>
+            <!-- COLOR SETTINGS -->
+            <div class="window hidden" id="color-settings-window">
+                <div class="window-header">
+                    <span>color settings</span>
+                    <button class="close-btn">X</button>
+                </div>
 
-    <script src="script.js?v=<?= time() ?>"></script>
+                <div class="window-content">
+                    <input type="radio" id="theme1" name="theme" autocomplete="off" value="gray-lcd" checked>
+                    <input type="radio" id="theme2" name="theme" autocomplete="off" value="blue-lcd">
+                    <input type="radio" id="theme3" name="theme" autocomplete="off" value="green-lcd">
+                    <!--<input type="radio" id="theme4" name="theme" autocomplete="off" value="green-navy">
+                    <input type="radio" id="theme5" name="theme" autocomplete="off" value="vampire">
+                    <input type="radio" id="theme6" name="theme" autocomplete="off" value="black-white">-->
+                    <div class="color-settings-area">
+
+                        <label for="theme1" class="color-settings-selection-square"><p>gray lcd</p></label>
+                        <label for="theme2" class="color-settings-selection-square"><p>blue lcd</p></label>
+                        <label for="theme3" class="color-settings-selection-square"><p>green lcd</p></label>
+                        <!--<label for="theme4" class="color-settings-selection-square"><p>green navy</p></label>
+                        <label for="theme5" class="color-settings-selection-square"><p>vampire</p></label>
+                        <label for="theme6" class="color-settings-selection-square"><p>black-white</p></label>-->
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- CLI empty-->
+            <div class="window hidden" id="empty-window">
+                    <div class="window-header">
+                        <span>Lights-Out</span>
+                        <button class="close-btn">X</button>
+                    </div>
+                <div class="window-content" id="empty" style="padding: 0; margin: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0;">
+                    <iframe src="./lights_out.html" style="border: none;width: 100%;height: 100%;display: block;"></iframe>
+                </div>
+            </div>    
+
+
+        </div>
+    </div>    
+    </div>
+    <div class="keyboard"></div>
     
+    <script src="script.js?v=<?= time() ?>"></script>
 </body>
 </html>
