@@ -294,7 +294,7 @@ body {
   cursor: pointer;
   border: var(--background-color);
   border-radius: 1px;
-  border-width: 4px;
+  border-width: min(1dvh,1dvw);
   border-style:solid;
 }
 
@@ -503,9 +503,8 @@ input[type="radio"] {
     border-style:dotted;
     border-width: 4px;
     border-radius: 0px;
-    
-    
 }
+
 
 
 input[type="checkbox"]{
@@ -613,6 +612,7 @@ input[type="checkbox"]{
 
   --background-color:#889c7a;
   --display-color:#0e1605;
+  --lights-out-color:#889c7a; 
   --cons-color:#0e1605;
   --header-color:#889c7a;
   --terminal-background:#0e1605;
@@ -634,7 +634,7 @@ input[type="checkbox"]{
 [data-theme="blue-lcd"] {
   --background-color: #6c52ff;
   --display-color: #c8c4bc; 
-  --lights-out-color:#c8c4bc; 
+  --lights-out-color:#6c52ff; 
   --cons-color:#c8c4bc;  
   --header-color: #6c52ff;
   --terminal-background:#c8c4bc;
@@ -666,7 +666,7 @@ input[type="checkbox"]{
 [data-theme="retro"]{
     --background-color:#009a9a;
     --display-color:#f4f4ec;
-    --lights-out-color:#009a9a;
+    --lights-out-color:#bebebc;
     --cons-color:black;
     --header-color:#bebebc;
     --terminal-background:black;
