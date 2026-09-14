@@ -272,11 +272,21 @@ input.addEventListener("keydown", function(event) {
             }
             print("Type 'help' for available commands.");
             break;
-        case "REBOOT":         
         case "SHUTDOWN":
+            print("SHUTTING DOWN SYSTEM...");
+            setTimeout(() => {
+                if (typeof toggleScreenPower === 'function') {
+                    toggleScreenPower();
+                } else if (screenArea) {
+                    screenArea.classList.add('screen-off');
+                    if (powerButton) powerButton.classList.add('is-off');
+                }
+            }, 600);
+            break;
+        case "REBOOT":         
         case "RELOAD":
             location.reload();
-            break
+            break;
         case "LS":
             print("ABOUT_ME/");
             print("GITHUB/");
@@ -409,6 +419,9 @@ const LOREM_TEXT = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED
 let loremIndex = 0;
 
 function typeDigitalKeyboardChar() {
+    if (screenArea && screenArea.classList.contains('screen-off')) {
+        return;
+    }
     const terminalWindow = document.getElementById('terminal-window');
     if (terminalWindow) {
         if (terminalWindow.classList.contains('hidden') || activeWindowId !== 'terminal-window') {
@@ -460,5 +473,28 @@ if (digitalKeyboard) {
 }
 
 
+const powerButton = document.getElementById('monitor-power-button') || document.querySelector('.monitor-i-o-button');
+const screenArea = document.querySelector('.monitor-screen-content-area');
 
+function toggleScreenPower() {
+    if (!screenArea) return;
+    const isOff = screenArea.classList.toggle('screen-off');
+    if (powerButton) {
+        powerButton.classList.toggle('is-off', isOff);
+    }
 
+    if (dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+        dropdownMenu.classList.add('hidden');
+    }
+
+    if (isOff && input) {
+        input.blur();
+    }
+}
+
+if (powerButton) {
+    powerButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleScreenPower();
+    });
+}
