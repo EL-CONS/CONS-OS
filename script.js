@@ -587,5 +587,5 @@ function rebootOS() {
 
 
 applyTheme(document.querySelector('input[name="theme"]:checked')?.value || 'gray-lcd');
-playBootAnimation(4000);
+playBootAnimation(10);
 

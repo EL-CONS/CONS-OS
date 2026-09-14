@@ -224,6 +224,7 @@ body {
     align-items: center;
     background-color: var(--display-color);
     color: var(--background-color);
+    
 }
 
 .taskbar-apps {
@@ -231,8 +232,9 @@ body {
     align-items: center;
     gap: 6px;
     height: 100%;
-    flex: 1;
-    margin: 0 10px;
+    width: 50%;
+    flex: 0 1 45%;
+    margin: 0 auto 0 10px;
     overflow-x: auto;
     overflow-y: hidden;
     scrollbar-width: none;
@@ -265,17 +267,14 @@ body {
     border-width: 4px;
     border-color: var(--display-color);
     font-family: "Technology";
-    font-size: 20px;
     cursor: pointer;
     white-space: nowrap;
     text-transform: uppercase;
     box-sizing: border-box;
     user-select: none;
+    font-size: min(4dvw, 4dvh);;
 }
 
-.taskbar-app-btn:hover {
-    filter: brightness(1.2);
-}
 
 .taskbar-app-btn.active {
     background-color: var(--background-color);
@@ -285,20 +284,18 @@ body {
 
 .start-button{
   height: 100%;
-  width: 80px;
+  font-size: min(4dvw, 4dvh);
   top: 0;
   left: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50%;
   position: relative;
   cursor: pointer;
   border: var(--background-color);
   border-radius: 1px;
   border-width: 4px;
   border-style:solid;
-  
 }
 
 .start-button:hover{
@@ -342,15 +339,16 @@ body {
 
 #clock{
   height: 100%;
-  width: 115px;
-  
+  font-size: min(6dvw, 6dvh);
+  /* background-color: var(--display-color);*/
   position: absolute;
   top:0;
   right: 6px;
   display: flex;
+  padding-left: 10px;
   justify-content: center;
   align-items: center;
-  font-size: 50%;
+  font-size: 90%;
 }
 
 .window-position-space{
@@ -387,7 +385,8 @@ body {
     background-color: var(--header-color);
     color: var(--display-color);
     padding: 1px 10px;
-    font-size: 50%;
+    font-size: 75%;
+    
 }
 
 
@@ -395,7 +394,6 @@ body {
     background-color: var(--display-color);
     color: var(--background-color);
     border: none;
-    font-size: 15px;
     cursor: pointer;
     font-family: inherit;
     
@@ -421,7 +419,8 @@ body {
   box-sizing: border-box;
   background-color: var(--terminal-background);
   color: var(--terminal-text-color);
-  font-size: 20px;  
+  font-size: 80%;
+  
 }
 
 #terminal #command {
@@ -490,8 +489,8 @@ input[type="radio"] {
 
 
 .color-settings-selection-square{
-    max-height:40px;
-    max-width: 40px;
+    height:min(10dvw, 10dvh);
+    width:min(10dvw, 10dvh);
     padding: 10px;
     cursor: pointer;
     display: flex;
@@ -504,7 +503,7 @@ input[type="radio"] {
     border-style:dotted;
     border-width: 4px;
     border-radius: 0px;
-    font-size: 20px;
+    
     
 }
 
@@ -536,8 +535,8 @@ input[type="checkbox"]{
 }
 
 .folder-icon{
-    width: 60px; 
-    height: 60px; 
+    width: min(16dvw, 16dvh);
+    height: min(16dvw, 16dvh);
     background-color: var(--background-color,#00000000);
     image-rendering: pixelated;
     image-rendering: crisp-edges;
@@ -553,10 +552,10 @@ input[type="checkbox"]{
   
 }
 .folder-label{
-  font-size:25px;
   font-family: "Technology";
   color:var(--background-color);
   text-align:center;  
+  font-size: 200%;
   
 }
 
@@ -573,7 +572,7 @@ input[type="checkbox"]{
 #empty{
     box-sizing: border-box;
     color: var(--background-color);
-    font-size: 20px;
+    
     white-space: pre-wrap;
     padding: 0;
     margin: 0;
@@ -588,7 +587,6 @@ input[type="checkbox"]{
     height: 100%;
     max-height: 100%;
 }
-
 
 
 
@@ -620,7 +618,7 @@ input[type="checkbox"]{
   --terminal-background:#0e1605;
   --terminal-text-color:#889c7a;
   /* FONTS */
-  --font-size: 45px;
+  --font-size: min(5dvw, 5dvh);;
   /* IMGS */
   --folder-icon:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAYCAYAAADpnJ2CAAAAZ0lEQVRIS+2VwQrAIAxD5/9/tMNCwuYYWEhueadaik9z6bi+TFZnDFYH7MOQ7f0/uvOvwe7PupQLwvZLm/D+JXDLQHkgdMvAjFBNIpWTSOUkUjmJVA4jXbh3IhcwD0Yp738K0HRRrhvkwy0HBi3kyAAAAABJRU5ErkJgggAA");
   --cons:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IB2cksfwAAAARnQU1BAACx jwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAZiS0dE AP8AAADLP5FnywAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+oJDgM5NlW8IXwAAAOTSURB VHja7VrZcqMwEOyZkcDeuGr/YN/3/z8utZXYvQ9c4jAGLEA4nio9xAE0Z0+PAHjLW97ylh8ssvoO HsTXAq24gW5rOsCgvOIW5VkOgm9QDuQAJSIZv7bOuoqKWbaS6S79DBCcSXwepnTXKAGuD11nAJ+S bgm0HdxdEUDxG0fIAFktSyK2Sd0p/UUtT6LINGIuzVLrdv0nc1BdcCljrxtizQzJC4XCNaOme/cO rSr7F+2xlSxWTkxZVjYhjoCjGgj17JMsUF7NAZMdJUIAhXMO0AZXcHFhN68pU+E4GVQvKdK+HC5T RMAYJWDKbifxgt5vBT4ka3/bAR5nOjiiArhyqeRc3N1F03SAmRBbgGCwx9ksIUc0qVkuX7QqUQKe cFaks+qg0r+knSXOhIIPwi4BB3AUKa/xIMRa+LCv/WJhbx4nNZ26rqOqIKBVi+sA4dD9SnhJJAtE CXyw7C2lMeMInwNU6TvF2mXUd2CTRcnhAauI5ubYmROK5UCD1mVyx4jSQS0WWD67YoyOsPTAkDBH oI3UQUQD4zsRrjLGBWnfLpX6ehGjVzCDS8sBNj4Q8c7/+9dr9XeR6k4tLCmmzIUGQM9xlCxlZUsr y0EEdJDG4D5GRG21EjsDruGzBXygpjRpXdN8qABC4DqsJ9fQPeYRy5TotClvA4Z1W8yR1yXQnDnk g200LZH5Dpha02Lx2178aZA6pVSWgVjCca8l67a1EaCs2Z2fHNkjuGD0fLDfJdw4TR649zhnN0PL 4CimlIDl+c4gBLl0DPU8nANk5GQXAE8VoocrGIJUHf/+qTPiAOh/H/EmRq+Jeo670+BR5RxEMWPn ZKeY/8ewQg5tfNuoEzwDssTeMIT2wYqafwnjh8Ds4drC+M35tCiI24SC9gC+UuX7K2eDGIhXFwMI y4YPPPADHHC/LeaHY3yRHbAt59f9jNeEoHl96C8nvgsDUjR+pqDF8VimxQsVhXXJUspzgN7l+NMO PrRLkHiC2+TV23PirCExsJGx1j01+6u2Runkpr9JlLj40kNpAHP8bt9nGcXNeBZOuzuiNd9PhN9x Kjzvnd+uA1PEzbV427uMCXIf4xOpQ1kIjvqU8Sgn+TRY1ebsgeqTa0d82c0mDVje/WwHYMHnMsf7 UHIUCA2btUNnD/q0rPfx0shnstvxgQlfZ3Hz8hNwbhk8UQK3ffM97ztBBMg31GtKBnDFvRkj6/4D pqkWoCgi+r0AAAAASUVORK5CYII= ");
