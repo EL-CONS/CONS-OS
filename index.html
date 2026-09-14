@@ -10,14 +10,22 @@
     
     <div class="monitor">
         <div class="monitor-screen-content-area">
+        <!-- BOOT ANIMATION -->
+        <div class="boot-screen" id="boot-screen">
+            <div class="boot-content">
+                <div class="boot-logo"></div>
+                <div class="boot-text">CONS-OS</div>
+            </div>
+        </div>
+
         <div class="cons"></div>
         <div class="navBar">
             <div class="start-button" id="start-button">CONS-OS
                 <ul id="dropdown-menu" class="hidden">
-                    <li class="menu-item app-link" data-target="terminal-window">Terminal</li>
-                    <li class="menu-item app-link" data-target="color-settings-window">color settings</li>
-                    <li class="menu-item app-link" data-target="files-window">files</li>
-                    <li class="menu-item app-link" data-target="empty-window">lights-out</li>
+                    <li class="menu-item app-link" data-target="terminal-window">TERMINAL</li>
+                    <li class="menu-item app-link" data-target="color-settings-window">COLOR SETTINGS</li>
+                    <li class="menu-item app-link" data-target="files-window">FILES</li>
+                    <li class="menu-item app-link" data-target="empty-window">LIGHTS-OUT</li>
                     <!-- <li class="menu-item app-link" data-target="notes-window">Notes</li> -->
                 </ul>
             </div>
@@ -32,21 +40,18 @@
             <!-- CLI TERMINAL-->
             <div class="window hidden" id="terminal-window">
                 <div class="window-header">
-                    <span>Terminal</span>
+                    <span>TERMINAL</span>
                     <button class="close-btn">X</button>
                 </div>
                 <div class="window-content" id="terminal">
-                    <div>Type "help" for available commands.</div>
-                    <div>
-                        <span>user@CONS-OS:~$ </span>
-                        <input id="command" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                    </div>
+                    <div>TYPE "HELP" FOR AVAILABLE COMMANDS</div>
+                    <div class="terminal-prompt" id="prompt-line"><span>USER@CONS-OS:~$ </span><span id="command" contenteditable="plaintext-only" spellcheck="false" autocomplete="off" autocapitalize="characters"></span></div>
                 </div>
             </div>
 
             <div class="window hidden" id="files-window">
                 <div class="window-header">
-                    <span>files</span>
+                    <span>FILES</span>
                     <button class="close-btn">X</button>
                 </div>
 
@@ -62,12 +67,12 @@
 
                 <button class="folder-item" type="button" data-url="https://github.com/EL-CONS">
                     <span class="folder-icon"></span>
-                    <span class="folder-label">github</span>
+                    <span class="folder-label">GITHUB</span>
                   </button>
 
                 <button class="folder-item" type="button" data-url="https://el-cons.itch.io/">
                     <span class="folder-icon"></span>
-                    <span class="folder-label">itchio</span>
+                    <span class="folder-label">ITCHIO</span>
                 </button>
               
                 </div>
@@ -78,28 +83,23 @@
             <!-- COLOR SETTINGS -->
             <div class="window hidden" id="color-settings-window">
                 <div class="window-header">
-                    <span>color settings</span>
+                    <span>COLOR SETTINGS</span>
                     <button class="close-btn">X</button>
                 </div>
 
                 <div class="window-content">
-                    <input type="radio" id="theme1" name="theme" autocomplete="off" value="gray-lcd" checked>
-                    <input type="radio" id="theme2" name="theme" autocomplete="off" value="blue-lcd">
-                    <input type="radio" id="theme3" name="theme" autocomplete="off" value="green-lcd">
-                    <input type="radio" id="theme4" name="theme" autocomplete="off" value="retro">
-                    <!--<input type="radio" id="theme4" name="theme" autocomplete="off" value="green-navy">
-                    <input type="radio" id="theme5" name="theme" autocomplete="off" value="vampire">
-                    <input type="radio" id="theme6" name="theme" autocomplete="off" value="black-white">-->
+                    <input type="radio" id="theme1" name="theme" autocomplete="off" value="retro" checked>
+                    <input type="radio" id="theme2" name="theme" autocomplete="off" value="gray-lcd">
+                    <input type="radio" id="theme3" name="theme" autocomplete="off" value="blue-lcd">
+                    <input type="radio" id="theme4" name="theme" autocomplete="off" value="green-lcd">
+                    
+                    
                     <div class="color-settings-area">
-
-                        <label for="theme1" class="color-settings-selection-square"><p>gray lcd</p></label>
-                        <label for="theme2" class="color-settings-selection-square"><p>blue lcd</p></label>
-                        <label for="theme3" class="color-settings-selection-square"><p>green lcd</p></label>
-                        <label for="theme4" class="color-settings-selection-square"><p>retro</p></label>
-                        <!--<label for="theme4" class="color-settings-selection-square"><p>green navy</p></label>
-                        <label for="theme5" class="color-settings-selection-square"><p>vampire</p></label>
-                        <label for="theme6" class="color-settings-selection-square"><p>black-white</p></label>-->
-
+                        <label for="theme1" class="color-settings-selection-square"><p>RETRO</p></label>
+                        <label for="theme2" class="color-settings-selection-square"><p>GRAY LCD</p></label>
+                        <label for="theme3" class="color-settings-selection-square"><p>BLUE LCD</p></label>
+                        <label for="theme4" class="color-settings-selection-square"><p>GREEN LCD</p></label>
+    
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
             <!-- CLI empty-->
             <div class="window hidden" id="empty-window">
                     <div class="window-header">
-                        <span>Lights-Out</span>
+                        <span>LIGHTS-OUT</span>
                         <button class="close-btn">X</button>
                     </div>
                 <div class="window-content" id="empty" style="padding: 0; margin: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0;">

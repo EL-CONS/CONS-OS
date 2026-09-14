@@ -1,5 +1,42 @@
 const input = document.getElementById("command");
 const terminal = document.getElementById("terminal");
+
+if (input) {
+    Object.defineProperty(input, 'value', {
+        get() {
+            return (this.textContent || '').replace(/[\r\n]+/g, '');
+        },
+        set(val) {
+            this.textContent = val;
+            if (document.activeElement === this) {
+                const range = document.createRange();
+                range.selectNodeContents(this);
+                range.collapse(false);
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+            if (terminal) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        },
+        configurable: true
+    });
+
+    input.addEventListener("input", () => {
+        if (terminal) {
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+    });
+}
+
+if (terminal) {
+    terminal.addEventListener("click", (e) => {
+        if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === 'a') return;
+        if (input) input.focus();
+    });
+}
+
 const date = new Date();
 let hour = date.getHours();
 let curentDate= date.getDay+ "/" + date.getMonth+ "/";
@@ -230,14 +267,16 @@ input.addEventListener("keydown", function(event) {
     if (event.key !== "Enter") {
         return;
     }
+    event.preventDefault();
 
-    const command = input.value;
+    const rawCommand = input.value;
+    const command = rawCommand.trim().toUpperCase();
     const line = document.createElement("div");
-    line.textContent = "user@CONS-OS:~$ " + command;
+    line.textContent = "USER@CONS-OS:~$ " + rawCommand;
     terminal.insertBefore(line, input.parentElement);
     switch (command) {
         case "HELP":
-            print("--Available commands:--");
+            print("--AVAILABLE COMMANDS:--");
             print("HELP");
             print("LS");
             print("CD");
@@ -260,13 +299,11 @@ input.addEventListener("keydown", function(event) {
             break;
             
         case "CLEAR":
-            print("");
             while (terminal.firstChild !== input.parentElement) {
                 terminal.removeChild(terminal.firstChild);
             }
             break;
         case "RESET":
-            
             while (terminal.firstChild !== input.parentElement) {
                 terminal.removeChild(terminal.firstChild);
             }
@@ -283,9 +320,9 @@ input.addEventListener("keydown", function(event) {
                 }
             }, 600);
             break;
-        case "REBOOT":         
+        case "REBOOT":
         case "RELOAD":
-            location.reload();
+            rebootOS();
             break;
         case "LS":
             print("ABOUT_ME/");
@@ -296,25 +333,21 @@ input.addEventListener("keydown", function(event) {
                 print("HI, IM EL-CONS. I'M A COMPUTER SCIENCE STUDENT");
                 break;
         case "CD GITHUB":
-                printLink("VISIt MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
+                printLink("VISIT MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
                 break;
         case "CD ITCHIO":
                 printLink("VISIT MY ITCHIO PROFILE C:", "https://el-cons.itch.io/");
                 break;
         case "CONSFETCH":
-            print("⣿⣿⣿⠟⠉⠀⠀⠀⠀⠀⠉⠉⠛⢿⣿⣿⣿");
-            print("⣿⣿⠏⢀⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿");
-            print("⣿⣿⠀⢸⣿⣿⣿⣷⣤⣀⣀⣠⣴⡆⢸⣿⣿");
-            print("⣿⣿⠄⢸⠛⠛⠛⣿⣿⣩⣤⣥⣿⠁⢸⣿⣿");
-            print("⣿⣿⠐⠀⣤⠈⢉⢙⠋⣤⠀⢨⡉⠀⡆⣿⣿");
-            print("⣿⣿⣇⢀⣘⣂⠂⢠⡀⢌⠠⢘⣰⠀⣰⣿⣿");
-            print("⣿⣿⣿⡘⠻⡿⠃⠘⡋⠸⢿⣿⠟⢸⣿⣿⣿");
-            print("⣿⣿⣿⣷⣤⡀⠻⠄⠀⡴⠂⠁⣠⣿⣿⣿⣿");
-            print("⣿⣿⣿⣿⣿⣿⣶⠀⣀⣀⢠⣾⣿⣿⣿⣿⣿");
-            print("⣿⣿⡿⠿⠛⠛⠋⣼⣿⣿⡌⠛⢛⠻⢿⣿⣿");
-            print("⡿⢋⣴⣾⣿⣿⣦⣭⣭⣙⣡⣿⣿⣿⣶⣌⢻");
-            print("⢁⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄");
-            print("⢸⣿⣿⡏⢹⣿⣿⣿⣿⣿⣿⣿⣿⣇⢹⣿⠇")
+
+            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿⣿ [OS:------CONS-OS]");
+            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿⣿ [BRANCH------MAIN]");
+            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿⣿ [RELEASE:--STABLE]");
+            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼⣿ [PKG'S:---------4]");
+            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿⣿");
+            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿⣿");
+            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝⣿");
+            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿⢸");
             break;
             
         case "LOREM":
@@ -327,11 +360,14 @@ input.addEventListener("keydown", function(event) {
             break;
             
         default:
-            print("Command not found: " + command);
+            print("COMMAND NOT FOUND: " + command);
             break;
     }
 
     input.value = "";
+    if (terminal) {
+        terminal.scrollTop = terminal.scrollHeight;
+    }
 });
 
 function printLink(text,url){
@@ -341,10 +377,15 @@ function printLink(text,url){
     link.href  =url;
     link.textContent=text;
     link.target="_blank";
-    link.style.color = "var(--background-color-bright-green)"; 
+    link.style.color = "inherit";
+    link.style.textDecoration = "underline";
+    link.style.wordBreak = "break-all";
     line.appendChild(link);
 
     terminal.insertBefore(line, input.parentElement);
+    if (terminal) {
+        terminal.scrollTop = terminal.scrollHeight;
+    }
 }
 
 
@@ -352,6 +393,9 @@ function print(text) {
     const line = document.createElement("div");
     line.textContent = text;
     terminal.insertBefore(line, input.parentElement);
+    if (terminal) {
+        terminal.scrollTop = terminal.scrollHeight;
+    }
 }
 
 const menuBtn = document.getElementById('start-button');
@@ -397,7 +441,7 @@ menu.addEventListener('change', (event) => {
 
 if(gameFrame){
     gameFrame.addEventListener('load',() => {
-       const currentTheme = document.querySelector('input[name="theme"]:checked')?.value || 'gray-lcd';
+       const currentTheme = document.querySelector('input[name="theme"]:checked')?.value || 'retro';
        applyTheme(currentTheme);
     });
 }
@@ -498,3 +542,50 @@ if (powerButton) {
         toggleScreenPower();
     });
 }
+
+//****************************** */ 
+// BOOT
+//****************************** */
+const bootScreen = document.getElementById("boot-screen");
+let bootTimeout = null;
+let bootFadeTimeout = null;
+
+function playBootAnimation(duration = 4000) {
+    if (!bootScreen) return;
+
+    if (bootTimeout) clearTimeout(bootTimeout);
+    if (bootFadeTimeout) clearTimeout(bootFadeTimeout);
+
+    
+    bootScreen.classList.remove("hidden");
+    bootScreen.classList.remove("boot-hidden");
+
+    
+    const bootContent = bootScreen.querySelector(".boot-content");
+    if (bootContent) {
+        bootContent.style.animation = "none";
+        void bootContent.offsetWidth;
+        bootContent.style.animation = "";
+    }
+
+    
+    bootTimeout = setTimeout(() => {
+        bootScreen.classList.add("boot-hidden");
+        bootFadeTimeout = setTimeout(() => {
+            bootScreen.classList.add("hidden");
+        }, 250);
+    }, duration);
+}
+
+function rebootOS() {
+    print("REBOOTING SYSTEM...");
+
+    setTimeout(() => {
+        location.reload();
+    }, 300);
+}
+
+
+applyTheme(document.querySelector('input[name="theme"]:checked')?.value || 'gray-lcd');
+playBootAnimation(4000);
+
