@@ -291,7 +291,8 @@ body {
   align-items: center;
   position: relative;
   cursor: pointer;
-  padding: 0.5%;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
   border: var(--navbar-border-color);
   border-radius: 0px;
   border-width: min(0.65dvh,0.65dvw);
