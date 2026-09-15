@@ -305,7 +305,17 @@ input.addEventListener("keydown", function(event) {
                 terminal.removeChild(terminal.firstChild);
             }
             closeWindow(document.getElementById('terminal-window'));
+            print("TYPE 'HELP' FOR AVAILABLE COMMANDS");
+            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿⣿ [OS:------CONS-OS]");
+            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿⣿ [BRANCH------MAIN]");
+            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿⣿ [RELEASE:--STABLE]");
+            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼⣿ [PKG'S:-------(5)]");
+            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿⣿");
+            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿⣿");
+            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝⣿");
+            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿⢸");
             break;
+            
             
         case "CLEAR":
             while (terminal.firstChild !== input.parentElement) {
