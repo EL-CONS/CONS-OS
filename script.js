@@ -74,7 +74,7 @@ const APP_SHORT_NAMES = {
     'color-settings-window': 'COLOR.S.',
     'files-window': 'FILES',
     'empty-window': 'LIGHTS',
-    'notes-window': 'NOTES'
+    'notes-window': 'JOURN.'
 };
 
 function getAppShortName(id, fullTitle) {
@@ -210,6 +210,9 @@ function setActiveWindow(targetId) {
     } else if (targetId === 'color-settings-window') {
         const colorInput = document.getElementById('osColors');
         if (colorInput) colorInput.focus();
+    } else if (targetId === 'notes-window') {
+        const journalInput = document.getElementById('journal');
+        if (journalInput) journalInput.focus();
     }
 
     updateTaskbar();
@@ -531,8 +534,9 @@ function toggleScreenPower() {
         dropdownMenu.classList.add('hidden');
     }
 
-    if (isOff && input) {
-        input.blur();
+    if (isOff) {
+        if (input) input.blur();
+        if (journal) journal.blur();
     }
 }
 
@@ -588,4 +592,33 @@ function rebootOS() {
 
 applyTheme(document.querySelector('input[name="theme"]:checked')?.value || 'gray-lcd');
 playBootAnimation(4000);
+
+
+//****************************** */ 
+// JOURNAL APP
+//****************************** */
+const journal = document.getElementById("journal");
+const notesWindow = document.getElementById("notes-window");
+
+if (journal) {
+    journal.addEventListener("keydown", (e) => {
+        if (e.key === "Tab") {
+            e.preventDefault();
+            const start = journal.selectionStart;
+            const end = journal.selectionEnd;
+            const val = journal.value;
+            journal.value = val.substring(0, start) + "    " + val.substring(end);
+            journal.selectionStart = journal.selectionEnd = start + 4;
+            journal.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+    });
+}
+
+if (notesWindow && journal) {
+    notesWindow.addEventListener("click", (e) => {
+        if (e.target && e.target.classList.contains("close-btn")) return;
+        journal.focus();
+    });
+}
+
 
