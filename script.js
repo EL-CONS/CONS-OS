@@ -288,16 +288,32 @@ input.addEventListener("keydown", function(event) {
             print("--AVAILABLE COMMANDS:--");
             print("HELP");
             print("LS");
-            print("CD");
+            print("CAT");
+            print("OPEN")
             print("ABOUT");
             print("CLEAR");
             print("RESET");
+            print("REBOOT")
+            print("SHUTDOWN")
             print("EXIT");
             print("----------------------");
             break;
-            
         case "ABOUT":
-            print("WELCOME TO EL-CONS WEBSITE.");
+            while (terminal.firstChild !== input.parentElement) {
+                terminal.removeChild(terminal.firstChild);
+            }
+            print("TYPE 'HELP' FOR AVAILABLE COMMAND");
+            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿ [OS:------CONS-OS]");
+            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿ [BRANCH------MAIN]");
+            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿ [RELEASE:--STABLE]");
+            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼ [PKG'S:-------(5)]");
+            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿");
+            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿");
+            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝");
+            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿");
+            print("_");
+            print("_");
+            printLink("VISIT MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
             break;
             
         case "EXIT":
@@ -306,14 +322,14 @@ input.addEventListener("keydown", function(event) {
             }
             closeWindow(document.getElementById('terminal-window'));
             print("TYPE 'HELP' FOR AVAILABLE COMMANDS");
-            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿⣿ [OS:------CONS-OS]");
-            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿⣿ [BRANCH------MAIN]");
-            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿⣿ [RELEASE:--STABLE]");
-            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼⣿ [PKG'S:-------(5)]");
-            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿⣿");
-            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿⣿");
-            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝⣿");
-            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿⢸");
+            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿ [OS:------CONS-OS]");
+            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿ [BRANCH------MAIN]");
+            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿ [RELEASE:--STABLE]");
+            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼ [PKG'S:-------(5)]");
+            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿");
+            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿");
+            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝");
+            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿");
             break;
             
             
@@ -344,38 +360,63 @@ input.addEventListener("keydown", function(event) {
             rebootOS();
             break;
         case "LS":
-            print("ABOUT_ME/");
-            print("GITHUB/");
-            print("ITCHIO/");
+            print("ABOUT_CONS-OS.TXT");
+            print("ABOUT_ME.TXT");
+            print("NOTES.TXT");
+            print("GITHUB");
+            print("ITCHIO");
+            print("FONT");
             break;
-        case "CD ABOUT_ME":
+        case "CAT ABOUT_ME.TXT":
+        case "CAT ABOUT_ME":
                 print("HI, IM EL-CONS. I'M A COMPUTER SCIENCE STUDENT");
                 break;
-        case "CD GITHUB":
+        case "CAT NOTES.TXT":
+        case "CAT NOTES":
+                print("CONS-OS JOURNAL NOTES:");
+                print("- SYSTEM OPERATIONAL");
+                print("- JOURNAL APP CONNECTED TO FILES");
+                print("- READY TO WRITE");
+                break;
+        case "OPEN ABOUT_CONS-OS.TXT":
+        case "OPEN ABOUT_CONS-OS":
+        case "JOURNAL ABOUT_CONS-OS.TXT":
+                openTextFile('NOTES.TXT', FILES_DATA['ABOUT_CONS-OS.TXT']);
+                break;
+        case "OPEN ABOUT_ME.TXT":
+        case "OPEN ABOUT_ME":
+        case "JOURNAL ABOUT_ME.TXT":
+                openTextFile('ABOUT_ME.TXT', FILES_DATA['ABOUT_ME.TXT']);
+                break;
+        case "OPEN NOTES.TXT":
+        case "OPEN NOTES":
+        case "JOURNAL NOTES.TXT":
+                openTextFile('NOTES.TXT', FILES_DATA['NOTES.TXT']);
+                break;
+        case "OPEN GITHUB":
+        case "CAT GITHUB":
                 printLink("VISIT MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
                 break;
-        case "CD ITCHIO":
+        case "OPEN ITCHIO":
+        case "CAT ITCHIO":
                 printLink("VISIT MY ITCHIO PROFILE C:", "https://el-cons.itch.io/");
+                break;
+        case "OPEN FONT":
+        case "CAT FONT":
+                printLink("USED FONT IN THIS PROYECT","https://github.com/balt-dev/bytesized-gf");
                 break;
         case "CONSFETCH":
 
-            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿⣿ [OS:------CONS-OS]");
-            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿⣿ [BRANCH------MAIN]");
-            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿⣿ [RELEASE:--STABLE]");
-            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼⣿ [PKG'S:-------(5)]");
-            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿⣿");
-            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿⣿");
-            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝⣿");
-            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿⢸");
+            print("⣿⣿⠿⠛⠛⠻⠿⣿⣿ [OS:------CONS-OS]");
+            print("⣿⠇⣤⣤⡀⠀⠀⡈⣿ [BRANCH------MAIN]");
+            print("⣿⠇⢟⣛⣿⠪⣭⡇⢿ [RELEASE:--STABLE]");
+            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼ [PKG'S:-------(5)]");
+            print("⣿⣷⡙⢫⣈⡘⠟⣸⣿");
+            print("⣿⣿⣿⣶⢠⡄⣾⣿⣿");
+            print("⡟⣩⣶⣦⣛⣓⣴⣦⡝");
+            print("⢸⣿⢻⣿⣿⣿⣿⡟⣿");
             break;
-            
-        case "LOREM":
-        case "LOREM IPSUM":
-            print("DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT.");
-            break;
-            
         case "":
-            
             break;
             
         default:
@@ -468,13 +509,44 @@ if(gameFrame){
 
 
 
-const folderButtons = document.querySelectorAll(".folder-item");
-folderButtons.forEach((folder) => {
-    folder.addEventListener("click", () => {
-        const url = folder.dataset.url;
+const FILES_DATA = {
+    'ABOUT_CONS-OS.TXT': "'IN SOFTWARE, AS IN LIFE, LESS CAN BE MORE.'(Eric S. Raymond).\n\n This proyect started as a brief tought. when starting the operative system 2026-2 unviersity class i wondered what would a programmer in the early stages of computer user interfaces develompent would feel when coding an operative system. Im not that good of a programer yet, but i know how to fulfill that itch",
+    'ABOUT_ME.TXT': "HI, IM EL-CONS.\nI'M A COMPUTER SCIENCE STUDENT.\nWELCOME TO CONS-OS!",
+    'NOTES.TXT': "CONS-OS JOURNAL NOTES:\n\n- SYSTEM OPERATIONAL\n- JOURNAL APP CONNECTED TO FILES\n- READY TO WRITE\n- HOPE YOU LIKE IT :b"
 
+};
+
+function openTextFile(fileName, content) {
+    const journalElem = journal || document.getElementById('journal');
+    if (!journalElem) return;
+
+
+    journalElem.value = "";
+    journalElem.value = content;
+    setActiveWindow('notes-window');
+
+    journalElem.focus();
+    const len = journalElem.value.length;
+    journalElem.setSelectionRange(len, len);
+    journalElem.scrollTop = 0;
+    journalElem.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+document.addEventListener('click', (e) => {
+    const item = e.target.closest('.link-item, .file-item, .folder-item');
+    if (!item) return;
+
+    const url = item.dataset.url;
+    const file = item.dataset.file;
+    const content = item.dataset.content;
+
+    if (url) {
         window.open(url, "_blank", "noopener,noreferrer");
-    });
+    } else if (file || content !== undefined) {
+        const raw = content !== undefined ? content : (FILES_DATA[file] || "");
+        const text = raw.replace(/\\n/g, "\n");
+        openTextFile(file, text);
+    }
 });
 
 const digitalKeyboard = document.querySelector('.keyboard');
