@@ -220,7 +220,10 @@ body {
     align-items: center;
     background-color: var(--display-color);
     color: var(--background-color);
-    
+    border-style: solid;
+    border-radius: 0px;
+    border-width: min(1dvw,1dvh);
+    border-color: var(--navbar-border-color);
 }
 
 .taskbar-apps {
@@ -288,33 +291,34 @@ body {
   align-items: center;
   position: relative;
   cursor: pointer;
-  border: var(--background-color);
-  border-radius: 1px;
-  border-width: min(1dvh,1dvw);
+  padding: 0.5%;
+  border: var(--navbar-border-color);
+  border-radius: 0px;
+  border-width: min(0.65dvh,0.65dvw);
   border-style:solid;
 }
 
-.start-button:hover{
-  background-color: var(--display-color); 
-}
+
 
 .menu-container {
     position: relative; 
     display: inline-block;
+
 }
 
 
 #dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 0;
-    margin-top:10%;
+    left: -4%;
+    margin-top:3%;
     line-height: 0.8;
     padding:0;
     background: var(--display-color);
     border-radius: 0px;
-    border-style: simple2;
-    border-width: 4px;
+    border-style: solid;
+    border-width: min(0.65dvh,0.65dvw);
+    border-color: var(--navbar-border-color);
     list-style: none; 
     z-index: 999;
     color: var(--background-color);
@@ -739,6 +743,7 @@ input[type="checkbox"]{
   --header-color: #6c52ff;
   --terminal-background:#6c52ff;
   --terminal-text-color:#c8c4bc;
+  --navbar-border-color:#6c52ff;
 }
 
 
@@ -750,6 +755,7 @@ input[type="checkbox"]{
   --header-color:#889c7a;
   --terminal-background:#0e1605;
   --terminal-text-color:#889c7a;
+  --navbar-border-color:#889c7a;
 }
 
 
@@ -761,6 +767,7 @@ input[type="checkbox"]{
   --header-color:#b5e61d;
   --terminal-background:#2c4410;
   --terminal-text-color:#b5e61d;
+  --navbar-border-color:#b5e61d;
 }
  
 [data-theme="retro"]{
@@ -771,6 +778,7 @@ input[type="checkbox"]{
     --header-color:#bebebc;
     --terminal-background:black;
     --terminal-text-color:#ffffff;
+    --navbar-border-color:#bebebc;
 }
   
   

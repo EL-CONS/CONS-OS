@@ -288,8 +288,8 @@ input.addEventListener("keydown", function(event) {
             print("--AVAILABLE COMMANDS:--");
             print("HELP");
             print("LS");
-            print("CAT");
-            print("OPEN")
+            print("CAT <FILE>");
+            print("OPEN <FILE>")
             print("ABOUT");
             print("CLEAR");
             print("RESET");
