@@ -1,5 +1,7 @@
 const input = document.getElementById("command");
 const terminal = document.getElementById("terminal");
+const journal = document.getElementById("journal");
+const notesWindow = document.getElementById("notes-window");
 
 if (input) {
     Object.defineProperty(input, 'value', {
@@ -212,7 +214,11 @@ function setActiveWindow(targetId) {
         if (colorInput) colorInput.focus();
     } else if (targetId === 'notes-window') {
         const journalInput = document.getElementById('journal');
-        if (journalInput) journalInput.focus();
+        if (journalInput) {
+            journalInput.focus();
+            const len = journalInput.value.length;
+            journalInput.setSelectionRange(len, len);
+        }
     }
 
     updateTaskbar();
@@ -346,7 +352,7 @@ input.addEventListener("keydown", function(event) {
             print("⣿⣿⠿⠛⠛⠻⠿⣿⣿⣿ [OS:------CONS-OS]");
             print("⣿⠇⣤⣤⡀⠀⠀⡈⣿⣿ [BRANCH------MAIN]");
             print("⣿⠇⢟⣛⣿⠪⣭⡇⢿⣿ [RELEASE:--STABLE]");
-            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼⣿ [PKG'S:---------4]");
+            print("⣿⡎⡰⠀⠀⡂⢐⠚⣼⣿ [PKG'S:-------(5)]");
             print("⣿⣷⡙⢫⣈⡘⠟⣸⣿⣿");
             print("⣿⣿⣿⣶⢠⡄⣾⣿⣿⣿");
             print("⡟⣩⣶⣦⣛⣓⣴⣦⡝⣿");
@@ -469,21 +475,37 @@ function typeDigitalKeyboardChar() {
     if (screenArea && screenArea.classList.contains('screen-off')) {
         return;
     }
-    const terminalWindow = document.getElementById('terminal-window');
-    if (terminalWindow) {
-        if (terminalWindow.classList.contains('hidden') || activeWindowId !== 'terminal-window') {
-            setActiveWindow('terminal-window');
+    const notesWindowElem = notesWindow || document.getElementById('notes-window');
+    if (notesWindowElem) {
+        if (notesWindowElem.classList.contains('hidden') || activeWindowId !== 'notes-window') {
+            setActiveWindow('notes-window');
         }
     }
 
-    if (input) {
+    const journalInput = journal || document.getElementById('journal');
+    if (journalInput) {
+        if (document.activeElement !== journalInput) {
+            journalInput.focus();
+        }
+
         const char = LOREM_TEXT[loremIndex % LOREM_TEXT.length];
         loremIndex++;
-        input.value += char;
-        input.dispatchEvent(new Event('input', { bubbles: true }));
 
-        if (terminal) {
-            terminal.scrollTop = terminal.scrollHeight;
+        const start = journalInput.selectionStart;
+        const end = journalInput.selectionEnd;
+        const val = journalInput.value;
+
+        if (typeof start === 'number' && typeof end === 'number') {
+            journalInput.value = val.substring(0, start) + char + val.substring(end);
+            journalInput.selectionStart = journalInput.selectionEnd = start + 1;
+        } else {
+            journalInput.value += char;
+        }
+
+        journalInput.dispatchEvent(new Event('input', { bubbles: true }));
+
+        if (start >= val.length) {
+            journalInput.scrollTop = journalInput.scrollHeight;
         }
     }
 }
@@ -597,8 +619,6 @@ playBootAnimation(4000);
 //****************************** */ 
 // JOURNAL APP
 //****************************** */
-const journal = document.getElementById("journal");
-const notesWindow = document.getElementById("notes-window");
 
 if (journal) {
     journal.addEventListener("keydown", (e) => {
