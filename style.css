@@ -285,7 +285,7 @@ body {
   height: 100%;
   font-size: min(4dvw, 4dvh);
   top: 0;
-  left: 7px;
+  left: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -295,7 +295,7 @@ body {
   padding-right: 0.5%;
   border: var(--navbar-border-color);
   border-radius: 0px;
-  border-width: min(0.65dvh,0.65dvw);
+  border-width: min(1dvh,1dvw);
   border-style:solid;
 }
 
@@ -318,7 +318,7 @@ body {
     background: var(--display-color);
     border-radius: 0px;
     border-style: solid;
-    border-width: min(0.65dvh,0.65dvw);
+    border-width: min(1dvh,1dvw);
     border-color: var(--navbar-border-color);
     list-style: none; 
     z-index: 999;
@@ -345,7 +345,7 @@ body {
   /* background-color: var(--display-color);*/
   position: absolute;
   top:0;
-  right: 6px;
+  right: 15px;
   display: flex;
   padding-left: 10px;
   justify-content: center;
@@ -355,10 +355,10 @@ body {
 
 .window-position-space{
     position: absolute;
-    top:8.1%;
-    left: 1%;
-    height: 91%;
-    width: 98.1%;
+    top:11%;
+    left: 1.2%;
+    height: 87.7%;
+    width: 97.7%;
     overflow: hidden;
 }
 
@@ -556,7 +556,7 @@ input[type="radio"] {
 .color-settings-selection-square{
     height:min(10dvw, 10dvh);
     width:min(10dvw, 10dvh);
-    padding: 10px;
+    padding: 16%;
     cursor: pointer;
     display: flex;
     justify-content:center;
@@ -565,7 +565,7 @@ input[type="radio"] {
     background-color: var(--display-color);
     border: var(--background-color);
     color: var(--background-color);
-    border-style:dotted;
+    border-style:simple;
     border-width: 4px;
     border-radius: 0px;
 }
