@@ -194,7 +194,7 @@ body {
     filter: brightness(1.1);
     transform: translateY(-3px);
 }
-
+/*
 @media (max-width: 640px) {
     .keyboard {
         display: block;
@@ -202,8 +202,9 @@ body {
         aspect-ratio: 1080 / 630;
         height: auto;
         flex-shrink: 0;
-    }
+        }
 }
+        */
 
 .keyboard_click_area{
     width: 95%;
