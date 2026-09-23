@@ -195,7 +195,7 @@ body {
     transform: translateY(-3px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
     .keyboard {
         display: block;
         width: min(98dvw, 98dvh);
