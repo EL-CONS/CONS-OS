@@ -180,18 +180,21 @@ body {
 .keyboard{
     top:-10px;
     display: flex;
+    position: relative;
+    width: min(98dvw, 98dvh);
+    aspect-ratio: 1080 / 630;
+    flex-shrink: 0;
     background-image: var(--keyboard-img);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
-    position: relative;
-    flex-shrink: 0;
+    
 }
 
 .keyboard:active {
-    filter: brightness(1.1);
+    
     transform: translateY(-3px);
 }
 /*
@@ -202,9 +205,9 @@ body {
         aspect-ratio: 1080 / 630;
         height: auto;
         flex-shrink: 0;
-        }
+    }
 }
-        */
+    */
 
 .keyboard_click_area{
     width: 95%;
