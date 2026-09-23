@@ -188,11 +188,6 @@ body {
     image-rendering: crisp-edges;
     position: relative;
     flex-shrink: 0;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .keyboard:active {
@@ -210,6 +205,19 @@ body {
     }
 }
 
+.keyboard_click_area{
+    width: 95%;
+    height: 70%;
+    display: flex;
+    position: relative;
+    top: 20%;
+    
+
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
 .navBar{
     height:7%;
     width: 100%;
