@@ -223,7 +223,7 @@ body {
     touch-action: manipulation;
 }
 .navBar{
-    height:7%;
+    height:5%;
     width:  97.9%;
     position: absolute;
     top: 0%;
@@ -367,7 +367,7 @@ body {
 
 .window-position-space{
     position: absolute;
-    top:11%;
+    top:9%;
     left: 1.2%;
     height: 87.7%;
     width: 97.7%;
@@ -615,8 +615,8 @@ input[type="checkbox"]{
 .link-icon,
 .file-icon,
 .folder-icon{
-    width: min(16dvw, 16dvh);
-    height: min(16dvw, 16dvh);
+    width: min(13dvw, 13dvh);
+    height: min(13dvw, 13dvh);
     background-color: var(--background-color,#00000000);
     image-rendering: pixelated;
     image-rendering: crisp-edges;
@@ -790,7 +790,7 @@ input[type="checkbox"]{
     --cons-color:black;
     --header-color:#bebebc;
     --terminal-background:black;
-    --terminal-text-color:#ffffff;
+    --terminal-text-color:#f4f4ec;
     --navbar-border-color:#bebebc;
 }
   
