@@ -1,162 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <title>CONS-OS</title>
     <link rel="stylesheet" href="./style.css?v=<?= time() ?>">
 </head>
+
 <body>
-    
+
     <div class="monitor">
         <div class="monitor-screen-content-area">
-        <!-- BOOT ANIMATION -->
-        <div class="boot-screen" id="boot-screen">
-            <div class="boot-content">
-                <div class="boot-logo"></div>
-                <div class="boot-text">CONS-OS</div>
-            </div>
-        </div>
-
-        <div class="cons"></div>
-        <div class="navBar">
-            <div class="start-button" id="start-button">CONS-OS
-                <ul id="dropdown-menu" class="hidden">
-                    <li class="menu-item app-link" data-target="terminal-window">TERMINAL</li>
-                    <li class="menu-item app-link" data-target="color-settings-window">COLOR SETTINGS</li>
-                    <li class="menu-item app-link" data-target="files-window">FILES</li>
-                    <li class="menu-item app-link" data-target="empty-window">LIGHTS-OUT</li>
-                    <li class="menu-item app-link" data-target="notes-window">JOURNAL</li>
-                </ul>
-            </div>
-            <div class="taskbar-apps" id="taskbar-apps"></div>
-            <div class="clock" id="clock"></div>
-        </div>
-    
-
-        <div class="window-position-space">
-
-       
-            <!-- CLI TERMINAL-->
-            <div class="window hidden" id="terminal-window">
-                <div class="window-header">
-                    <span>TERMINAL</span>
-                    <button class="close-btn">X</button>
-                </div>
-                <div class="window-content" id="terminal">
-                    <div>TYPE "HELP" FOR AVAILABLE COMMANDS</div>
-                    <div>⣿⣿⠿⠛⠛⠻⠿⣿⣿ [OS:------CONS-OS]</div>
-                    <div>⣿⠇⣤⣤⡀⠀⠀⡈⣿ [BRANCH------MAIN]</div>
-                    <div>⣿⠇⢟⣛⣿⠪⣭⡇⢿ [RELEASE:--STABLE]</div>
-                    <div>⣿⡎⡰⠀⠀⡂⢐⠚⣼ [PKG'S:-------(5)]</div>
-                    <div>⣿⣷⡙⢫⣈⡘⠟⣸⣿</div>
-                    <div>⣿⣿⣿⣶⢠⡄⣾⣿⣿</div>
-                    <div>⡟⣩⣶⣦⣛⣓⣴⣦⡝</div>
-                    <div>⢸⣿⢻⣿⣿⣿⣿⡟⣿</div>
-                    <div class="terminal-prompt" id="prompt-line"><span>USER@CONS-OS:~$ </span><span id="command" contenteditable="plaintext-only" spellcheck="false" autocomplete="off" autocapitalize="characters"></span></div>
+            <!-- BOOT ANIMATION -->
+            <div class="boot-screen" id="boot-screen">
+                <div class="boot-content">
+                    <div class="boot-logo"></div>
+                    <div class="boot-text">CONS-OS</div>
                 </div>
             </div>
 
-            <!-- JOURNAL -->
-            <div class="window hidden" id="notes-window">
-                <div class="window-header">
-                    <span>JOURNAL</span>
-                    <button class="close-btn">X</button>
+            <div class="cons"></div>
+            <div class="navBar">
+                <div class="start-button" id="start-button">CONS-OS
+                    <ul id="dropdown-menu" class="hidden">
+                        <li class="menu-item app-link" data-target="terminal-window">TERMINAL</li>
+                        <li class="menu-item app-link" data-target="color-settings-window">COLOR SETTINGS</li>
+                        <li class="menu-item app-link" data-target="files-window">FILES</li>
+                        <li class="menu-item app-link" data-target="empty-window">LIGHTS-OUT</li>
+                        <li class="menu-item app-link" data-target="notes-window">JOURNAL</li>
+                        <li class="menu-item app-link" data-target="calculator-window">CALCULATOR</li>
+                    </ul>
                 </div>
-                <textarea class="window-content" id="journal" spellcheck="false" autocomplete="off" autocapitalize="none"></textarea>
-            </div>
-
-            <div class="window hidden" id="files-window">
-                <div class="window-header">
-                    <span>FILES</span>
-                    <button class="close-btn">X</button>
-                </div>
-
-               <div class="window-content">
-                <div class="files-area">
-
-                <button class="file-item" type="button" data-file="ABOUT_CONS-OS.TXT">
-                    <span class="file-icon"></span>
-                    <span class="file-label">ABOUT_CONS-OS.TXT</span>
-                </button> 
-
-                <button class="file-item" type="button" data-file="ABOUT_ME.TXT">
-                    <span class="file-icon"></span>
-                    <span class="file-label">ABOUT_ME.TXT</span>
-                </button> 
-
-                <button class="file-item" type="button" data-file="NOTES.TXT">
-                    <span class="file-icon"></span>
-                    <span class="file-label">NOTES.TXT</span>
-                </button> 
-
-                <button class="link-item" type="button" data-url="https://github.com/EL-CONS">
-                    <span class="link-icon"></span>
-                    <span class="link-label">GITHUB</span>
-                  </button>
-
-                <button class="link-item" type="button" data-url="https://el-cons.itch.io/">
-                    <span class="link-icon"></span>
-                    <span class="link-label">ITCHIO</span>
-                </button>
-
-                   <button class="link-item" type="button" data-url="https://github.com/balt-dev/bytesized-gf">
-                    <span class="link-icon"></span>
-                    <span class="link-label">FONT</span>
-                </button>
-              
-                </div>
-            </div>
+                <div class="taskbar-apps" id="taskbar-apps"></div>
+                <div class="clock" id="clock"></div>
             </div>
 
 
-            <!-- COLOR SETTINGS -->
-            <div class="window hidden" id="color-settings-window">
-                <div class="window-header">
-                    <span>COLOR SETTINGS</span>
-                    <button class="close-btn">X</button>
-                </div>
+            <div class="window-position-space">
 
-                <div class="window-content">
-                    <input type="radio" id="theme1" name="theme" autocomplete="off" value="retro" checked>
-                    <input type="radio" id="theme2" name="theme" autocomplete="off" value="gray-lcd">
-                    <input type="radio" id="theme3" name="theme" autocomplete="off" value="blue-lcd">
-                    <input type="radio" id="theme4" name="theme" autocomplete="off" value="green-lcd">
-                    
-                    
-                    <div class="color-settings-area">
-                        <label for="theme1" class="color-settings-selection-square"><p>RETRO</p></label>
-                        <label for="theme2" class="color-settings-selection-square"><p>GRAY LCD</p></label>
-                        <label for="theme3" class="color-settings-selection-square"><p>BLUE LCD</p></label>
-                        <label for="theme4" class="color-settings-selection-square"><p>GREEN LCD</p></label>
-    
+
+                <!-- CLI TERMINAL-->
+                <div class="window hidden" id="terminal-window">
+                    <div class="window-header">
+                        <span>TERMINAL</span>
+                        <button class="close-btn">X</button>
+                    </div>
+                    <div class="window-content" id="terminal">
+                        <div>TYPE "HELP" FOR AVAILABLE COMMANDS</div>
+                        <div>⣿⣿⠿⠛⠛⠻⠿⣿⣿ [OS:------CONS-OS]</div>
+                        <div>⣿⠇⣤⣤⡀⠀⠀⡈⣿ [BRANCH------MAIN]</div>
+                        <div>⣿⠇⢟⣛⣿⠪⣭⡇⢿ [RELEASE:--STABLE]</div>
+                        <div>⣿⡎⡰⠀⠀⡂⢐⠚⣼ [PKG'S:-------(5)]</div>
+                        <div>⣿⣷⡙⢫⣈⡘⠟⣸⣿</div>
+                        <div>⣿⣿⣿⣶⢠⡄⣾⣿⣿</div>
+                        <div>⡟⣩⣶⣦⣛⣓⣴⣦⡝</div>
+                        <div>⢸⣿⢻⣿⣿⣿⣿⡟⣿</div>
+                        <div class="terminal-prompt" id="prompt-line"><span>USER@CONS-OS:~$ </span><span id="command"
+                                contenteditable="plaintext-only" spellcheck="false" autocomplete="off"
+                                autocapitalize="characters"></span></div>
                     </div>
                 </div>
-            </div>
+
+                <!-- JOURNAL -->
+                <div class="window hidden" id="notes-window">
+                    <div class="window-header">
+                        <span>JOURNAL</span>
+                        <button class="close-btn">X</button>
+                    </div>
+                    <textarea class="window-content" id="journal" spellcheck="false" autocomplete="off"
+                        autocapitalize="none"></textarea>
+                </div>
+
+                <div class="window hidden" id="files-window">
+                    <div class="window-header">
+                        <span>FILES</span>
+                        <button class="close-btn">X</button>
+                    </div>
+
+                    <div class="window-content">
+                        <div class="files-area">
+
+                            <button class="file-item" type="button" data-file="ABOUT_CONS-OS.TXT">
+                                <span class="file-icon"></span>
+                                <span class="file-label">ABOUT_CONS-OS.TXT</span>
+                            </button>
+
+                            <button class="file-item" type="button" data-file="ABOUT_ME.TXT">
+                                <span class="file-icon"></span>
+                                <span class="file-label">ABOUT_ME.TXT</span>
+                            </button>
+
+                            <button class="file-item" type="button" data-file="NOTES.TXT">
+                                <span class="file-icon"></span>
+                                <span class="file-label">NOTES.TXT</span>
+                            </button>
+
+                            <button class="link-item" type="button" data-url="https://github.com/EL-CONS">
+                                <span class="link-icon"></span>
+                                <span class="link-label">GITHUB</span>
+                            </button>
+
+                            <button class="link-item" type="button" data-url="https://el-cons.itch.io/">
+                                <span class="link-icon"></span>
+                                <span class="link-label">ITCHIO</span>
+                            </button>
+
+                            <button class="link-item" type="button" data-url="https://github.com/balt-dev/bytesized-gf">
+                                <span class="link-icon"></span>
+                                <span class="link-label">FONT</span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- COLOR SETTINGS -->
+                <div class="window hidden" id="color-settings-window">
+                    <div class="window-header">
+                        <span>COLOR SETTINGS</span>
+                        <button class="close-btn">X</button>
+                    </div>
+
+                    <div class="window-content">
+                        <input type="radio" id="theme1" name="theme" autocomplete="off" value="retro" checked>
+                        <input type="radio" id="theme2" name="theme" autocomplete="off" value="gray-lcd">
+                        <input type="radio" id="theme3" name="theme" autocomplete="off" value="blue-lcd">
+                        <input type="radio" id="theme4" name="theme" autocomplete="off" value="green-lcd">
+
+
+                        <div class="color-settings-area">
+                            <label for="theme1" class="color-settings-selection-square">
+                                <p>RETRO</p>
+                            </label>
+                            <label for="theme2" class="color-settings-selection-square">
+                                <p>GRAY LCD</p>
+                            </label>
+                            <label for="theme3" class="color-settings-selection-square">
+                                <p>BLUE LCD</p>
+                            </label>
+                            <label for="theme4" class="color-settings-selection-square">
+                                <p>GREEN LCD</p>
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
 
 
 
 
-            <!-- CLI empty-->
-            <div class="window hidden" id="empty-window">
+                <!-- CLI empty-->
+                <div class="window hidden" id="empty-window">
                     <div class="window-header">
                         <span>LIGHTS-OUT</span>
                         <button class="close-btn">X</button>
                     </div>
-                <div class="window-content" id="empty" style="padding: 0; margin: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0;">
-                    <iframe src="./lights_out.html" style="border: none;width: 100%;height: 100%;display: block;"></iframe>
+                    <div class="window-content" id="empty"
+                        style="padding: 0; margin: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0;">
+                        <iframe src="./lights_out.html"
+                            style="border: none;width: 100%;height: 100%;display: block;"></iframe>
+                    </div>
                 </div>
-            </div>    
+
+
+                <!-- CALCULATOR-->
+                <div class="window " id="calculator-window">
+                    <div class="window-header">
+                        <span>CALCULATOR</span>
+                        <button class="close-btn">X</button>
+                    </div>
+                    <div class="window-content" id="calculator-window"
+                        style="padding: 0; margin: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0;">
+                        <iframe src="./calculator.html"
+                            style="border: none;width: 100%;height: 100%;display: block;"></iframe>
+                    </div>
+                </div>
+
+
+            </div>
 
 
         </div>
-    </div>    
-    <div class="monitor-i-o-button" id="monitor-power-button" title="Power"></div>
+        <div class="monitor-i-o-button" id="monitor-power-button" title="Power"></div>
     </div>
+
+
+
+
+
     <div class="keyboard">
         <div class="keyboard_click_area"></div>
     </div>
-    
+
     <script src="script.js?v=<?= time() ?>"></script>
 </body>
+
 </html>

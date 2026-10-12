@@ -41,8 +41,8 @@ if (terminal) {
 
 const date = new Date();
 let hour = date.getHours();
-let curentDate= date.getDay+ "/" + date.getMonth+ "/";
-document.getElementById('theme1').checked =true;
+let curentDate = date.getDay + "/" + date.getMonth + "/";
+document.getElementById('theme1').checked = true;
 
 
 function updateClock() {
@@ -53,7 +53,7 @@ function updateClock() {
     const ampm = h >= 12 ? 'PM' : 'AM';
 
     h = h % 12;
-    h = h ? h : 12; 
+    h = h ? h : 12;
     m = m < 10 ? '0' + m : m;
     s = s < 10 ? '0' + s : s;
 
@@ -92,7 +92,7 @@ function getAppShortName(id, fullTitle) {
 
 
 if (taskbarAppsContainer) {
-    
+
     taskbarAppsContainer.addEventListener('wheel', (e) => {
         if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
             e.preventDefault();
@@ -100,14 +100,14 @@ if (taskbarAppsContainer) {
         }
     }, { passive: false });
 
-    
+
     let isMouseDown = false;
     let startPageX = 0;
     let scrollStart = 0;
     let hasMoved = false;
 
     taskbarAppsContainer.addEventListener('mousedown', (e) => {
-        if (e.button !== 0) return; 
+        if (e.button !== 0) return;
         isMouseDown = true;
         hasMoved = false;
         startPageX = e.pageX;
@@ -128,14 +128,14 @@ if (taskbarAppsContainer) {
         if (isMouseDown) {
             isMouseDown = false;
             taskbarAppsContainer.classList.remove('is-dragging');
-    
+
             setTimeout(() => {
                 hasMoved = false;
             }, 50);
         }
     });
 
-    
+
     taskbarAppsContainer.addEventListener('click', (e) => {
         if (hasMoved) {
             e.stopPropagation();
@@ -160,7 +160,7 @@ function updateTaskbar() {
         btn.type = 'button';
         btn.className = 'taskbar-app-btn' + (id === activeWindowId ? ' active' : '');
         btn.textContent = shortTitle;
-        btn.title = title; 
+        btn.title = title;
         btn.dataset.target = id;
 
         if (id === activeWindowId) {
@@ -172,7 +172,7 @@ function updateTaskbar() {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (activeWindowId === id) {
-                
+
                 win.classList.add('hidden');
                 win.classList.remove('active-window');
                 activeWindowId = null;
@@ -228,7 +228,7 @@ function closeWindow(win) {
     if (!win) return;
     win.classList.add('hidden');
     win.classList.remove('active-window');
-    
+
     if (activeWindowId === win.id) {
         activeWindowId = null;
         const remaining = document.querySelectorAll('.window:not(.hidden)');
@@ -272,7 +272,7 @@ document.querySelectorAll('.window').forEach(win => {
 
 
 
-input.addEventListener("keydown", function(event) {
+input.addEventListener("keydown", function (event) {
     if (event.key !== "Enter") {
         return;
     }
@@ -313,9 +313,9 @@ input.addEventListener("keydown", function(event) {
             print("⢸⣿⢻⣿⣿⣿⣿⡟⣿");
             print("_");
             print("_");
-            printLink("VISIT MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
+            printLink("VISIT MY GITHUB PROFILE", "https://github.com/EL-CONS");
             break;
-            
+
         case "EXIT":
             while (terminal.firstChild !== input.parentElement) {
                 terminal.removeChild(terminal.firstChild);
@@ -331,8 +331,8 @@ input.addEventListener("keydown", function(event) {
             print("⡟⣩⣶⣦⣛⣓⣴⣦⡝");
             print("⢸⣿⢻⣿⣿⣿⣿⡟⣿");
             break;
-            
-            
+
+
         case "CLEAR":
             while (terminal.firstChild !== input.parentElement) {
                 terminal.removeChild(terminal.firstChild);
@@ -369,42 +369,42 @@ input.addEventListener("keydown", function(event) {
             break;
         case "CAT ABOUT_ME.TXT":
         case "CAT ABOUT_ME":
-                print("HI, IM EL-CONS. I'M A COMPUTER SCIENCE STUDENT");
-                break;
+            print("HI, IM EL-CONS. I'M A COMPUTER SCIENCE STUDENT");
+            break;
         case "CAT NOTES.TXT":
         case "CAT NOTES":
-                print("CONS-OS JOURNAL NOTES:");
-                print("- SYSTEM OPERATIONAL");
-                print("- JOURNAL APP CONNECTED TO FILES");
-                print("- READY TO WRITE");
-                break;
+            print("CONS-OS JOURNAL NOTES:");
+            print("- SYSTEM OPERATIONAL");
+            print("- JOURNAL APP CONNECTED TO FILES");
+            print("- READY TO WRITE");
+            break;
         case "OPEN ABOUT_CONS-OS.TXT":
         case "OPEN ABOUT_CONS-OS":
         case "JOURNAL ABOUT_CONS-OS.TXT":
-                openTextFile('NOTES.TXT', FILES_DATA['ABOUT_CONS-OS.TXT']);
-                break;
+            openTextFile('NOTES.TXT', FILES_DATA['ABOUT_CONS-OS.TXT']);
+            break;
         case "OPEN ABOUT_ME.TXT":
         case "OPEN ABOUT_ME":
         case "JOURNAL ABOUT_ME.TXT":
-                openTextFile('ABOUT_ME.TXT', FILES_DATA['ABOUT_ME.TXT']);
-                break;
+            openTextFile('ABOUT_ME.TXT', FILES_DATA['ABOUT_ME.TXT']);
+            break;
         case "OPEN NOTES.TXT":
         case "OPEN NOTES":
         case "JOURNAL NOTES.TXT":
-                openTextFile('NOTES.TXT', FILES_DATA['NOTES.TXT']);
-                break;
+            openTextFile('NOTES.TXT', FILES_DATA['NOTES.TXT']);
+            break;
         case "OPEN GITHUB":
         case "CAT GITHUB":
-                printLink("VISIT MY GITHUB PROFILE" ,"https://github.com/EL-CONS");
-                break;
+            printLink("VISIT MY GITHUB PROFILE", "https://github.com/EL-CONS");
+            break;
         case "OPEN ITCHIO":
         case "CAT ITCHIO":
-                printLink("VISIT MY ITCHIO PROFILE C:", "https://el-cons.itch.io/");
-                break;
+            printLink("VISIT MY ITCHIO PROFILE C:", "https://el-cons.itch.io/");
+            break;
         case "OPEN FONT":
         case "CAT FONT":
-                printLink("USED FONT IN THIS PROYECT","https://github.com/balt-dev/bytesized-gf");
-                break;
+            printLink("USED FONT IN THIS PROYECT", "https://github.com/balt-dev/bytesized-gf");
+            break;
         case "CONSFETCH":
 
             print("⣿⣿⠿⠛⠛⠻⠿⣿⣿ [OS:------CONS-OS]");
@@ -418,7 +418,7 @@ input.addEventListener("keydown", function(event) {
             break;
         case "":
             break;
-            
+
         default:
             print("COMMAND NOT FOUND: " + command);
             break;
@@ -430,13 +430,13 @@ input.addEventListener("keydown", function(event) {
     }
 });
 
-function printLink(text,url){
-    const line =document.createElement("div");
-    const link= document.createElement("a");
+function printLink(text, url) {
+    const line = document.createElement("div");
+    const link = document.createElement("a");
 
-    link.href  =url;
-    link.textContent=text;
-    link.target="_blank";
+    link.href = url;
+    link.textContent = text;
+    link.target = "_blank";
     link.style.color = "inherit";
     link.style.textDecoration = "underline";
     link.style.wordBreak = "break-all";
@@ -462,19 +462,19 @@ const menuBtn = document.getElementById('start-button');
 const dropdownMenu = document.getElementById('dropdown-menu');
 
 menuBtn.addEventListener('click', (event) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     dropdownMenu.classList.toggle('hidden');
 });
 
 document.addEventListener('click', (event) => {
-    
+
     if (!menuBtn.contains(event.target)) {
         dropdownMenu.classList.add('hidden');
     }
 });
 
 dropdownMenu.addEventListener('click', (event) => {
-    event.stopPropagation();    
+    event.stopPropagation();
     dropdownMenu.classList.add('hidden');
 });
 
@@ -485,27 +485,31 @@ document.addEventListener('keydown', (event) => {
 });
 
 
-const menu = document.getElementById('color-settings-window');
-const gameFrame = document.querySelector('#empty iframe');
-
-function applyTheme(theme){
-    document.documentElement.setAttribute('data-theme',theme);
-
-    if(gameFrame && gameFrame.contentDocument){
-        gameFrame.contentDocument.documentElement.setAttribute('data-theme',theme);
-    }
-}
-menu.addEventListener('change', (event) => {
-    applyTheme(event.target.value);
-});
-
-if(gameFrame){
-    gameFrame.addEventListener('load',() => {
-       const currentTheme = document.querySelector('input[name="theme"]:checked')?.value || 'retro';
-       applyTheme(currentTheme);
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('.window iframe').forEach(frame => {
+        try {
+            if (frame.contentDocument) {
+                frame.contentDocument.documentElement.setAttribute('data-theme', theme);
+            }
+        } catch (e) {
+            console.error(e);
+        }
     });
 }
 
+const menu = document.getElementById('color-settings-window');
+menu?.addEventListener('change', (event) => {
+    applyTheme(event.target.value);
+});
+
+
+document.querySelectorAll('.window iframe').forEach(frame => {
+    frame.addEventListener('load', () => {
+        const currentTheme = document.querySelector('input[name="theme"]:checked')?.value || 'retro';
+        applyTheme(currentTheme);
+    });
+});
 
 
 
@@ -664,11 +668,11 @@ function playBootAnimation(duration = 4000) {
     if (bootTimeout) clearTimeout(bootTimeout);
     if (bootFadeTimeout) clearTimeout(bootFadeTimeout);
 
-    
+
     bootScreen.classList.remove("hidden");
     bootScreen.classList.remove("boot-hidden");
 
-    
+
     const bootContent = bootScreen.querySelector(".boot-content");
     if (bootContent) {
         bootContent.style.animation = "none";
@@ -676,7 +680,7 @@ function playBootAnimation(duration = 4000) {
         bootContent.style.animation = "";
     }
 
-    
+
     bootTimeout = setTimeout(() => {
         bootScreen.classList.add("boot-hidden");
         bootFadeTimeout = setTimeout(() => {
@@ -695,7 +699,7 @@ function rebootOS() {
 
 
 applyTheme(document.querySelector('input[name="theme"]:checked')?.value || 'gray-lcd');
-playBootAnimation(4000);
+playBootAnimation(40);
 
 
 //****************************** */ 
@@ -722,5 +726,8 @@ if (notesWindow && journal) {
         journal.focus();
     });
 }
+
+
+
 
 

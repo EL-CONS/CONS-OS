@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULATOR</title>
+    <style>
+        @font-face {
+            font-family: "Technology";
+            src: url(./fonts/Bytesized-Regular.ttf) format("truetype");
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Technology";
+            font-size: var(--font-size);
+            color: var(--calculator-text-color);
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculadora {
+            display: flex;
+            aspect-ratio: 1/1;
+            flex-direction: column;
+            width: 90%;
+            height: 90%;
+            gap: 12px;
+
+        }
+
+        #display {
+            width: 100%;
+            height: 18%;
+            background-color: var(--calculator-display-color);
+            text-align: right;
+            border: none;
+            padding: 8px 12px;
+        }
+
+        .buttons {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            width: min(20dvw, 20dvh);
+            height: min(8dvw, 8dvh);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            background-color: var(--calculator-buttons-collor);
+
+        }
+
+        .zero {
+            grid-column: span 2;
+        }
+
+
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--display-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--background-color);
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+
+        :root {
+            --font-size: min(10dvw, 10dvh);
+        }
+
+        [data-theme="blue-lcd"] {
+            --background-color: #6c52ff;
+            --display-color: #c8c4bc;
+            --box-filed: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAZ0lEQVRYR+2XMQrAMAzEmv8/OsWFM3FDRh8ZpCm0gw5tHk9l5quXsT0W+fqtg+KRzCUX6YsBbrn4vBrQnf3EZAAFKEABClCAAhSgAAUocE2BIMY4ycMkcF9H5TQTrhHF88+un92k9wVpxz4Hb/yGIQAAABBkZUJHQkI4ODU0NTQ5MERDNDg3Rv0tUSYAAAAASUVORK5CYIIA");
+            --box-icon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAV0lEQVRYR+2XOw4AIAjF5P6H1oCB+JkFh3Zie7Wb0nZ6XG+R60gcd2zbBbJefiIqUDU+DRCgAAUoQAEKUIACFKAABSjwQwGl6ndkXzMnW8K2VwElSyJ2B69SIAf2pvdoAAAAEGRlQkc0MkIzNkM3MUUzQjI2MzYwmC/x+gAAAABJRU5ErkJgggAA");
+            --calculator-text-color: #c8c4bc;
+            --calculator-display-color: #6c52ff;
+            --calculator-buttons-collor: #6c52ff;
+        }
+
+
+        [data-theme="gray-lcd"] {
+            --background-color: #889c7a;
+            --display-color: #0e1605;
+            --box-icon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAZ0lEQVRYR+2XMQrAMAzEmv8/OsWFM3FDRh8ZpCm0gw5tHk9l5quXsT0W+fqtg+KRzCUX6YsBbrn4vBrQnf3EZAAFKEABClCAAhSgAAUocE2BIMY4ycMkcF9H5TQTrhHF88+un92k9wVpxz4Hb/yGIQAAABBkZUJHQkI4ODU0NTQ5MERDNDg3Rv0tUSYAAAAASUVORK5CYIIA");
+            --box-filed: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAV0lEQVRYR+2XOw4AIAjF5P6H1oCB+JkFh3Zie7Wb0nZ6XG+R60gcd2zbBbJefiIqUDU+DRCgAAUoQAEKUIACFKAABSjwQwGl6ndkXzMnW8K2VwElSyJ2B69SIAf2pvdoAAAAEGRlQkc0MkIzNkM3MUUzQjI2MzYwmC/x+gAAAABJRU5ErkJgggAA");
+            --calculator-text-color: #0e1605;
+            --calculator-display-color: #889c7a;
+            --calculator-buttons-collor: #889c7a;
+        }
+
+
+        [data-theme="green-lcd"] {
+            --background-color: #b5e61d;
+            --display-color: #2c4410;
+            --box-icon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAZ0lEQVRYR+2XMQrAMAzEmv8/OsWFM3FDRh8ZpCm0gw5tHk9l5quXsT0W+fqtg+KRzCUX6YsBbrn4vBrQnf3EZAAFKEABClCAAhSgAAUocE2BIMY4ycMkcF9H5TQTrhHF88+un92k9wVpxz4Hb/yGIQAAABBkZUJHQkI4ODU0NTQ5MERDNDg3Rv0tUSYAAAAASUVORK5CYIIA");
+            --box-filed: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAV0lEQVRYR+2XOw4AIAjF5P6H1oCB+JkFh3Zie7Wb0nZ6XG+R60gcd2zbBbJefiIqUDU+DRCgAAUoQAEKUIACFKAABSjwQwGl6ndkXzMnW8K2VwElSyJ2B69SIAf2pvdoAAAAEGRlQkc0MkIzNkM3MUUzQjI2MzYwmC/x+gAAAABJRU5ErkJgggAA");
+
+            --calculator-text-color: #2c4410;
+            --calculator-display-color: #b5e61d;
+            --calculator-buttons-collor: #b5e61d;
+        }
+
+
+        [data-theme="retro"] {
+            --background-color: #009a9a;
+            --display-color: #009a9a;
+            --box-filed: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAZ0lEQVRYR+2XMQrAMAzEmv8/OsWFM3FDRh8ZpCm0gw5tHk9l5quXsT0W+fqtg+KRzCUX6YsBbrn4vBrQnf3EZAAFKEABClCAAhSgAAUocE2BIMY4ycMkcF9H5TQTrhHF88+un92k9wVpxz4Hb/yGIQAAABBkZUJHQkI4ODU0NTQ5MERDNDg3Rv0tUSYAAAAASUVORK5CYIIA");
+            --box-icon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAV0lEQVRYR+2XOw4AIAjF5P6H1oCB+JkFh3Zie7Wb0nZ6XG+R60gcd2zbBbJefiIqUDU+DRCgAAUoQAEKUIACFKAABSjwQwGl6ndkXzMnW8K2VwElSyJ2B69SIAf2pvdoAAAAEGRlQkc0MkIzNkM3MUUzQjI2MzYwmC/x+gAAAABJRU5ErkJgggAA");
+
+            --calculator-text-color: #000000;
+            --calculator-display-color: #f4f4ec;
+            --calculator-buttons-collor: #bebebc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculadora">
+        <input type="text" id="display" readonly>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="addValue('/')">/</button>
+            <button onclick="addValue('*')">*</button>
+            <button onclick="deleateLast()">&lt;-</button>
+
+            <button onclick="addValue('7')">7</button>
+            <button onclick="addValue('8')">8</button>
+            <button onclick="addValue('9')">9</button>
+            <button onclick="addValue('-')">-</button>
+
+            <button onclick="addValue('4')">4</button>
+            <button onclick="addValue('5')">5</button>
+            <button onclick="addValue('6')">6</button>
+            <button onclick="addValue('+')">+</button>
+
+            <button onclick="addValue('1')">1</button>
+            <button onclick="addValue('2')">2</button>
+            <button onclick="addValue('3')">3</button>
+            <button onclick="calculate()">=</button>
+
+            <button onclick="addValue('0')" class="zero">0</button>
+            <button onclick="addValue('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById("display");
+
+        function addValue(value) {
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            display.value = "";
+        }
+
+        function deleateLast() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                display.value = eval(display.value);
+            } catch {
+                display.value = "ERROR";
+            }
+        }
+    </script>
+</body>
+
+</html>
