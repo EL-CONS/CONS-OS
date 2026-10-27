@@ -711,34 +711,34 @@ input[type="checkbox"] {
     pointer-events: none;
     z-index: 30;
     background: repeating-linear-gradient(
-        -45deg,
-        #ffffff22 0px,
-        #ffffff1f 4px,
-        #f8f8ff1e 20px,
-        #fffff826 80px,
-        #ffffff22 100px
+        -75deg,
+        #ffffff15 0px, /* line 1 */
+        #ffffff12 4px, /* shadow 1*/
+        #f8f8ff17 20px, /* shado 2*/
+        #f9e76d1a 80px,  /* shadow 3*/
+        #ffffff13 100px  /* line 2*/
     );
-    animation: tv-static 5s steps(10) infinite;
+    animation: tv-static 3s steps(5) infinite;
 }
 
 @keyframes tv-static {
     0% {
-        background-position: 0 0;
+        background-position: 0px 0px;
     }
     20% {
-        background-position: 200px 0px;
+        background-position: 0px 200px ;
     }
     40% {
-        background-position: 40px 0px;
+        background-position: 0px 400px ;
     }
     60% {
-        background-position: 600px 0px;
+        background-position: 0px 600px;
     }
     80% {
-        background-position: 800px 0px;
+        background-position: 0px 800px ;
     }
     100% {
-        background-position: 1000px 0px;
+        background-position: 0px 1000px ;
     }
 }
 
