@@ -709,16 +709,16 @@ input[type="checkbox"] {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 30;
+    z-index: 501;
     background: repeating-linear-gradient(
-        -75deg,
-        #ffffff15 0px, /* line 1 */
-        #ffffff12 4px, /* shadow 1*/
-        #f8f8ff17 20px, /* shado 2*/
-        #f9e76d1a 80px,  /* shadow 3*/
-        #ffffff13 100px  /* line 2*/
+        0deg,
+        #ffffff00 0px, /* line 1 */
+        #ffffff00 0px, /* shadow 1*/
+        #f8f8ff05 0px, /* shado 2*/
+        #d7d0a60a 160px,  /* shadow 3*/
+        #ffffff00 50px  /* line 2*/
     );
-    animation: tv-static 3s steps(5) infinite;
+    animation: tv-static 3s steps(15) infinite;
 }
 
 @keyframes tv-static {
@@ -742,6 +742,58 @@ input[type="checkbox"] {
     }
 }
 
+
+
+
+
+.monitor-screen-scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 502;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(254, 253, 255, 0.172) 80%,
+        transparent 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 100px;
+    animation: tv-scanline 15s steps(150) infinite;
+}
+
+@keyframes tv-scanline {
+    0% {
+        background-position: 0 -500vh;
+    }
+    50% {
+        background-position: 0 0vh;
+    }
+    100% {
+        background-position: 0 500vh;
+    }
+}
+
+.monitor-burn{
+     position: absolute;
+    top: 80%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 502;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 34, 255, 0.175) 80%,
+        transparent 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 100px;
+}
 
 
 ::-webkit-scrollbar {
